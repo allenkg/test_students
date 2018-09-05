@@ -1,6 +1,6 @@
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import * as MainPageActions from '../actions/main-page';
+import MainPageActions from '../actions/main-page';
 import MainPage from '../components/MainPage';
 
 

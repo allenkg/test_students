@@ -12,10 +12,10 @@ const logger = createLogger({
 });
 
 const router = routerMiddleware(browserHistory);
-const enhancer = applyMiddleware(thunk, router, logger);
 
-function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState, enhancer);
+function configureStore(api) {
+  const enhancer = applyMiddleware(thunk.withExtraArgument(api), router, logger);
+  const store = createStore(rootReducer, enhancer);
 
   if(module.hot) {
     module.hot.accept('../reducers', () => {

@@ -5,6 +5,7 @@ import { syncHistoryWithStore } from "react-router-redux";
 import { browserHistory } from "react-router";
 import configureStore from "./store";
 import Root from "./containers/Root";
+import Api from "./api/api";
 
 export default class Application {
   static createApplication() {
@@ -12,36 +13,47 @@ export default class Application {
   }
 
   init() {
-    this.createStore();
-    this.createHistory();
-    this.enableHotReload();
+    this._createApi();
+    this._createStore();
+    this._createHistory();
+    // this.enableHotReload();
   }
 
   start() {
-    this.renderComponent(Root)
+    this._renderMain();
   }
 
-  createStore() {
-    this.store = configureStore();
+  _createApi() {
+    this.api = new Api();
   }
 
-  createHistory() {
+  _createStore() {
+    this.store = configureStore(this.api);
+  }
+
+  _createHistory() {
     this.history = syncHistoryWithStore(browserHistory, this.store)
   }
 
-  renderComponent(Component) {
+  _renderMain() {
     ReactDOM.render((
-      <AppContainer>
-        <Component store={this.store} history={this.history}/>
-      </AppContainer>
+      <Root store={this.store} history={this.history}/>
     ), document.getElementById('root'))
   }
 
-  enableHotReload() {
-    if (module.hot) {
-      module.hot.accept('./containers/Root', () => {
-        this.renderComponent(Root);
-      });
-    }
-  }
+  // renderComponent(Component) {
+  //   ReactDOM.render((
+  //     <AppContainer>
+  //       <Component store={this.store} history={this.history}/>
+  //     </AppContainer>
+  //   ), document.getElementById('root'))
+  // }
+
+  // enableHotReload() {
+  //   if (module.hot) {
+  //     module.hot.accept('./containers/Root', () => {
+  //       this.renderComponent(Root);
+  //     });
+  //   }
+  // }
 }

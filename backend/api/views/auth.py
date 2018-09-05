@@ -28,8 +28,9 @@ class GetAllStudentsView(object):
         body = []
         try:
             students = self.get_all_students_interactor.execute()
-            for student in students:
-                body.append(StudentSerializer.serialize(student))
+            if students:
+                for student in students:
+                    body.append(StudentSerializer.serialize(student))
             status = HTTP_STATUS_OK_CODE
         except InvalidEntityException as e:
             body = InvalidEntityExceptionSerializer.serialize(e)

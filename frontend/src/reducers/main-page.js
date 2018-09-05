@@ -7,11 +7,11 @@ import {
 } from '../actions/main-page';
 
 const INITIAL_STATE = {
-    data: ''
+    students: []
 };
 
 export default createReducer({
     [FETCH_DATA_SUCCESS]: (state, action) => merge(state, {
-        data: action.data.data
+        students: action.data
     })
 }, INITIAL_STATE)
