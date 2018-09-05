@@ -49,6 +49,44 @@ class GetAllStudentsInteractor(object):
         return self.student_repo.get_all_students()
 
 
+class CourseInteractor(object):
+    def __init__(self, course_repo):
+        self.course_repo = course_repo
+        self.errors = []
+
+    def set_params(self, course_id, title, description, img, student):
+        self.course_id = course_id
+        self.title = title
+        self.description = description
+        self.img = img
+        self.student = student
+        return self
+
+    def delete_course(self):
+        return self.course_repo.delete_course(self.course_id)
+
+    def get_student(self):
+        return self.course_repo.get_student_by_id(self.course_id)
+
+    def update_student(self):
+        self.validate()
+        return self.course_repo.update_course(
+            self.course_id,
+            self.title,
+            self.description,
+            self.student
+        )
+
+    def validate(self):
+        course = self.course_repo.get_course_by_id(self.course_id)
+        if not self.title:
+            self.errors.append(Error('title', 'empty'))
+        if not self.description:
+            self.errors.append(Error('description', 'empty'))
+        if len(self.errors) > 0:
+            raise InvalidEntityException(self.errors)
+
+
 class StudentInteractor(object):
     def __init__(self, student_repo):
         self.student_repo = student_repo

@@ -1,6 +1,8 @@
 from api.factories.interactors import CreateStudentInteractorFactory, GetAllStudentsInteractorFactory, \
-    ItemStudentInteractorFactory, CreateCourseInteractorFactory
-from api.views.auth import GetAllStudentsView, ItemStudentView, CreateStudentView, CreateCourseView
+    ItemStudentInteractorFactory, CreateCourseInteractorFactory, GetAllCoursesInteractorFactory, \
+    ItemCourseInteractorFactory
+from api.views.auth import GetAllStudentsView, ItemStudentView, CreateStudentView, CreateCourseView, GetAllCoursesView, \
+    ItemCourseView
 
 
 class CreateStudentViewFactory(object):
@@ -30,3 +32,16 @@ class CreateCourseViewFactory(object):
         create_course_interactor = CreateCourseInteractorFactory.create()
         return CreateCourseView(create_course_interactor)
 
+
+class GetAllCoursesViewFactory(object):
+    @staticmethod
+    def create():
+        get_all_courses_interactor = GetAllCoursesInteractorFactory.create()
+        return GetAllCoursesView(get_all_courses_interactor)
+
+
+class ItemCourseViewFactory(object):
+    @staticmethod
+    def create():
+        item_course_interactor = ItemCourseInteractorFactory.create()
+        return ItemCourseView(item_course_interactor)

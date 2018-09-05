@@ -76,6 +76,44 @@ class ItemStudentView(object):
         return body, status
 
 
+class ItemCourseView(object):
+    def __init__(self, item_course_interactor):
+        self.item_course_interactor = item_course_interactor
+
+    def get(self, **kwargs):
+        try:
+            course = self.item_course_interactor.set_params(**kwargs).get_course()
+            body = CourseSerializer.serialize(course)
+            status = HTTP_STATUS_OK_CODE
+        except InvalidEntityException as e:
+            body = InvalidEntityExceptionSerializer.serialize(e)
+            status = HTTP_BAD_REQUEST_STATUS_CODE
+
+        return body, status
+
+    def put(self, **kwargs):
+        try:
+            course = self.item_course_interactor.set_params(**kwargs).update_course()
+            body = CourseSerializer.serialize(course)
+            status = HTTP_STATUS_OK_CODE
+        except InvalidEntityException as e:
+            body = InvalidEntityExceptionSerializer.serialize(e)
+            status = HTTP_BAD_REQUEST_STATUS_CODE
+
+        return body, status
+
+    def delete(self, **kwargs):
+        try:
+            course = self.item_course_interactor.set_params(**kwargs).delete_course()
+            body = CourseSerializer.serialize(course)
+            status = HTTP_STATUS_OK_CODE
+        except InvalidEntityException as e:
+            body = InvalidEntityExceptionSerializer.serialize(e)
+            status = HTTP_BAD_REQUEST_STATUS_CODE
+
+        return body, status
+
+
 class CreateCourseView(object):
     def __init__(self, create_course_interactor):
         self.create_course_interactor = create_course_interactor
@@ -84,6 +122,24 @@ class CreateCourseView(object):
         try:
             course = self.create_course_interactor.set_params(**kwargs).execute()
             body = CourseSerializer.serialize(course)
+            status = HTTP_STATUS_OK_CODE
+        except InvalidEntityException as e:
+            body = InvalidEntityExceptionSerializer.serialize(e)
+            status = HTTP_BAD_REQUEST_STATUS_CODE
+        return body, status
+
+
+class GetAllCoursesView(object):
+    def __init__(self, get_all_courses_interactor):
+        self.get_all_courses_interactor = get_all_courses_interactor
+
+    def get(self):
+        body = []
+        try:
+            courses = self.get_all_courses_interactor.execute()
+            if courses:
+                for course in courses:
+                    body.append(CourseSerializer.serialize(course))
             status = HTTP_STATUS_OK_CODE
         except InvalidEntityException as e:
             body = InvalidEntityExceptionSerializer.serialize(e)
