@@ -97,3 +97,39 @@ class StudentInteractor(object):
             self.errors.append(Error('id_number', 'empty'))
         if len(self.errors) > 0:
             raise InvalidEntityException(self.errors)
+
+
+class CreateCourseInteractor(object):
+    def __init__(self, course_repo):
+        self.course_repo = course_repo
+        self.errors = []
+
+    def set_params(self, **kwargs):
+        self.title = kwargs.get('title')
+        self.description = kwargs.get('description')
+        self.img = kwargs.get('img')
+        return self
+
+    def execute(self):
+        self.validate()
+        return self.course_repo.create_course(
+            self.title,
+            self.description,
+            self.img
+        )
+
+    def validate(self):
+        if not self.title:
+            self.errors.append(Error('title', 'empty'))
+        if not self.description:
+            self.errors.append((Error('description', 'empty')))
+        if len(self.errors) > 0:
+            raise InvalidEntityException(self.errors)
+
+
+class GetAllCoursesInteractor(object):
+    def __init__(self, course_repo):
+        self.course_repo = course_repo
+
+    def execute(self):
+        return self.course_repo.get_all_courses()

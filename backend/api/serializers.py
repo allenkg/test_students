@@ -12,6 +12,18 @@ class StudentSerializer(object):
         }
 
 
+class CourseSerializer(object):
+    @staticmethod
+    def serialize(course):
+        return {
+            'id': course.id,
+            'title': course.title,
+            'description': course.description,
+            'img': course.img,
+            'student': course.student
+        }
+
+
 class InvalidEntityExceptionSerializer(object):
     @staticmethod
     def serialize(exception):

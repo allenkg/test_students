@@ -1,5 +1,5 @@
 from api.common.exceptions import InvalidEntityException
-from api.serializers import StudentSerializer, InvalidEntityExceptionSerializer
+from api.serializers import StudentSerializer, InvalidEntityExceptionSerializer, CourseSerializer
 
 HTTP_STATUS_OK_CODE = 200
 HTTP_BAD_REQUEST_STATUS_CODE = 400
@@ -73,4 +73,19 @@ class ItemStudentView(object):
             body = InvalidEntityExceptionSerializer.serialize(e)
             status = HTTP_BAD_REQUEST_STATUS_CODE
 
+        return body, status
+
+
+class CreateCourseView(object):
+    def __init__(self, create_course_interactor):
+        self.create_course_interactor = create_course_interactor
+
+    def post(self, **kwargs):
+        try:
+            course = self.create_course_interactor.set_params(**kwargs).execute()
+            body = CourseSerializer.serialize(course)
+            status = HTTP_STATUS_OK_CODE
+        except InvalidEntityException as e:
+            body = InvalidEntityExceptionSerializer.serialize(e)
+            status = HTTP_BAD_REQUEST_STATUS_CODE
         return body, status

@@ -1,7 +1,7 @@
 from django.conf import settings
 
-from api.factories.repo import StudentRepoFactory
-from api.interactors import CreateStudentInteractor, GetAllStudentsInteractor, StudentInteractor
+from api.factories.repo import StudentRepoFactory, CourseRepoFactory
+from api.interactors import CreateStudentInteractor, GetAllStudentsInteractor, StudentInteractor, CreateCourseInteractor
 
 
 class CreateStudentInteractorFactory(object):
@@ -23,6 +23,13 @@ class ItemStudentInteractorFactory(object):
     def create():
         student_repo = StudentRepoFactory.create()
         return StudentInteractor(student_repo)
+
+
+class CreateCourseInteractorFactory(object):
+    @staticmethod
+    def create():
+        course_repo = CourseRepoFactory.create()
+        return CreateCourseInteractor(course_repo)
 
 
 class AuthorizeUserInteractorFactory(object):

@@ -1,5 +1,5 @@
 from api.common.exceptions import EntityDoesNotExist
-from api.models import Student
+from api.models import Student, Course
 
 
 class StudentRepo(object):
@@ -50,3 +50,40 @@ class StudentRepo(object):
         self.save_student(student)
 
 
+class CourseRepo(object):
+    def get_course_by_id(self, id):
+        try:
+            course = Course.objects.get(pk=id)
+        except Student.DoesNotExist:
+            raise EntityDoesNotExist
+
+        return course
+
+    def create_course(self, title, description, img):
+        course = Course()
+        course.title = title
+        course.description = description
+        course.img = img
+        course.save()
+
+    def save_course(self, sourse):
+        sourse.save()
+
+    def get_all_courses(self):
+        return Course.objects.all()
+
+    def delete_course(self, id):
+        try:
+            course = Course.objects.get(pk=id)
+            course.is_deleted = True
+        except Student.DoesNotExist:
+            raise EntityDoesNotExist
+
+        return course
+
+    def update_course(self, id, title, description, img, student):
+        course = self.get_course_by_id(id)
+        course.title = title
+        course.description = description
+        course.img = img
+        course.save()
