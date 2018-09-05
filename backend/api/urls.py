@@ -2,7 +2,7 @@ from django.urls import path
 
 from api.common.views import ViewWrapper
 from api.factories.views import CreateStudentViewFactory, GetAllStudentsViewFactory, ItemStudentViewFactory, \
-    CreateCourseViewFactory, GetAllCoursesViewFactory
+    CreateCourseViewFactory, GetAllCoursesViewFactory, ItemCourseViewFactory
 
 urlpatterns = [
     path('add-student', ViewWrapper.as_view(view_factory=CreateStudentViewFactory)),
