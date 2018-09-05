@@ -18,9 +18,7 @@ class CourseSerializer(object):
         return {
             'id': course.id,
             'title': course.title,
-            'description': course.description,
-            'img': course.img,
-            'student': course.student
+            'description': course.description
         }
 
 

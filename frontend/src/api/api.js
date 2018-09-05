@@ -1,11 +1,17 @@
 export default class Api {
 
   fetchStudents() {
-    console.log('fetchStudents');
     return new Promise((resolve, reject) => {
       let url = `/api/students`;
       const data =  this.makeRequest('GET', url);
-      console.log(data, 'asdasdasdasdsadssdasd');
+      resolve(data)
+    })
+  }
+
+  fetchCourses() {
+    return new Promise((resolve, reject) => {
+      let url = `/api/courses`;
+      const data =  this.makeRequest('GET', url);
       resolve(data)
     })
   }

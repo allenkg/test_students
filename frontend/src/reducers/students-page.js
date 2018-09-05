@@ -4,10 +4,10 @@ import {
   FETCH_DATA,
   FETCH_DATA_SUCCESS,
   FETCH_DATA_FAILURE
-} from '../actions/main-page';
+} from '../actions/students-page';
 
 const INITIAL_STATE = {
-  courses: [],
+  students: [],
   isLoading: false,
   errors: {}
 };
@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 export default createReducer({
   [FETCH_DATA]: (state) => merge(state, {isLoading: true}),
   [FETCH_DATA_SUCCESS]: (state, action) => merge(state, {
-    courses: action.data,
+    students: action.data,
     isLoading: false
   }),
   [FETCH_DATA_FAILURE]: (state, action) => merge(state, {
