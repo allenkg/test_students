@@ -8,6 +8,14 @@ export default class Api {
     })
   }
 
+  getStudent(student_id) {
+    return new Promise((resolve, reject) => {
+      let url = `/api/student/${student_id}`;
+      const data =  this.makeRequest('GET', url);
+      resolve(data)
+    })
+  }
+
   getCourses() {
     return new Promise((resolve, reject) => {
       let url = `/api/courses`;

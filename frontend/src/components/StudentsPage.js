@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import studentAvatar from "../styles/images/studentAvatar.jpeg";
+import {Link} from "react-router";
 
 class StudentsPage extends React.Component {
   static propTypes = {
@@ -27,18 +28,16 @@ class StudentsPage extends React.Component {
 
         <div className="card-deck mb-3 text-center">
           {students.map((student, index) =>
-            <div className="card" style={{width: "18rem"}} key={index}>
-              <p className="text-center mt-2">
-                <img className="card-img-top" src={studentAvatar} alt="Card image cap" style={{width: "40%"}}/>
-              </p>
-              <div className="card-body">
-                <h5 className="card-title">{student.first_name} {student.last_name}</h5>
-                <p className="card-text" style={{fontSize: "1.5vw"}}>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" className="btn btn-primary" style={{fontSize: "1vw"}}>See Student details</a>
-              </div>
+            <div className="col-lg-4">
+              <img className="rounded-circle" src={student.img ? student.img: studentAvatar} alt="Generic placeholder image" width="140"
+                   height="140"/>
+              <h2>{student.first_name} {student.last_name} </h2>
+              <p><Link to={`/students/${student.id}`} className="btn btn-secondary" href="#" role="button">View details »</Link></p>
             </div>
           )}
         </div>
+
+
       </div>
     );
   }
