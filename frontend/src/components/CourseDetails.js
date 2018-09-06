@@ -16,7 +16,7 @@ class CourseDetails extends React.Component {
   render() {
     return (
       <div>
-
+        <h1>CourseDetails</h1>
       </div>
     );
   }

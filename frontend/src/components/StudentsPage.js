@@ -16,6 +16,7 @@ class StudentsPage extends React.Component {
 
   render() {
     const {students} = this.props;
+    console.log(students);
     return (
       <div>
         <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
@@ -25,8 +26,8 @@ class StudentsPage extends React.Component {
         </div>
 
         <div className="card-deck mb-3 text-center">
-          {students.map((student) =>
-            <div className="card" style={{width: "18rem"}}>
+          {students.map((student, index) =>
+            <div className="card" style={{width: "18rem"}} key={index}>
               <p className="text-center mt-2">
                 <img className="card-img-top" src={studentAvatar} alt="Card image cap" style={{width: "40%"}}/>
               </p>

@@ -1,6 +1,6 @@
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import CoursesPageActions from '../actions/main-page';
+import CoursesPageActions from '../actions/courses-page';
 import CoursesPage from '../components/CoursesPage';
 
 

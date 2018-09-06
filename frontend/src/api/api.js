@@ -1,6 +1,6 @@
 export default class Api {
 
-  fetchStudents() {
+  getStudents() {
     return new Promise((resolve, reject) => {
       let url = `/api/students`;
       const data =  this.makeRequest('GET', url);
@@ -8,7 +8,7 @@ export default class Api {
     })
   }
 
-  fetchCourses() {
+  getCourses() {
     return new Promise((resolve, reject) => {
       let url = `/api/courses`;
       const data =  this.makeRequest('GET', url);
