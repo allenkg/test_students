@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router';
 
 class CoursesPage extends React.Component {
   static propTypes = {
@@ -32,8 +33,8 @@ class CoursesPage extends React.Component {
               </p>
               <div className="card-body">
                 <h5 className="card-title">{course.title}</h5>
-                <p className="card-text" style={{fontSize: "1.5vw"}}>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" className="btn btn-primary" style={{fontSize: "1vw"}}>See course Students</a>
+                <p className="card-text" style={{fontSize: "1.5vw"}}>{course.description}</p>
+                <Link href={`/courses/${course.id}`} className="btn btn-primary" style={{fontSize: "1vw"}}>See course Students</Link>
               </div>
             </div>
           )}
