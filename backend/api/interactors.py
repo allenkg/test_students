@@ -92,7 +92,8 @@ class StudentInteractor(object):
         self.student_repo = student_repo
         self.errors = []
 
-    def set_params(self, student_id, email, first_name, last_name, course_id, phone_number, id_number):
+    def set_params(self, student_id, email=None, first_name=None, last_name=None, course_id=None, phone_number=None,
+                   id_number=None):
         self.student_id = student_id
         self.email = email,
         self.first_name = first_name,

@@ -7,7 +7,7 @@ from api.factories.views import CreateStudentViewFactory, GetAllStudentsViewFact
 urlpatterns = [
     path('add-student', ViewWrapper.as_view(view_factory=CreateStudentViewFactory)),
     path('students', ViewWrapper.as_view(view_factory=GetAllStudentsViewFactory)),
-    path('student/<:student_id>', ViewWrapper.as_view(view_factory=ItemStudentViewFactory)),
+    path('student/<int:student_id>', ViewWrapper.as_view(view_factory=ItemStudentViewFactory)),
     path('add-course', ViewWrapper.as_view(view_factory=CreateCourseViewFactory)),
     path('courses', ViewWrapper.as_view(view_factory=GetAllCoursesViewFactory)),
     path('course/<:course_id>', ViewWrapper.as_view(view_factory=ItemCourseViewFactory))

@@ -8,7 +8,8 @@ class StudentSerializer(object):
             'last_name': student.last_name,
             'email': student.email,
             'phone_number': student.phone_number,
-            'id_number': student.id_number
+            'id_number': student.id_number,
+            'img': str(student.img.url)
         }
 
 
