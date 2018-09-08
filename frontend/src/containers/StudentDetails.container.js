@@ -5,7 +5,6 @@ import StudentDetails from '../components/StudentDetails';
 
 
 function mapStateToProps(state, ownProps) {
-  console.log(ownProps);
   return {
       ...state.studentsPage,
       studentId: ownProps.routeParams.studentId

@@ -3,7 +3,7 @@ export default class Api {
   getStudents() {
     return new Promise((resolve, reject) => {
       let url = `/api/students`;
-      const data =  this.makeRequest('GET', url);
+      const data = this.makeRequest('GET', url);
       resolve(data)
     })
   }
@@ -11,7 +11,16 @@ export default class Api {
   getStudent(student_id) {
     return new Promise((resolve, reject) => {
       let url = `/api/student/${student_id}`;
-      const data =  this.makeRequest('GET', url);
+      const data = this.makeRequest('GET', url);
+      resolve(data)
+    })
+  }
+
+  updateStudent(payload) {
+    return new Promise((resolve, reject) => {
+      const student_id = payload.student_id;
+      let url = `/api/student/${student_id}`;
+      const data = this.makeMultipartRequest('PUT', url, payload);
       resolve(data)
     })
   }
@@ -19,9 +28,29 @@ export default class Api {
   getCourses() {
     return new Promise((resolve, reject) => {
       let url = `/api/courses`;
-      const data =  this.makeRequest('GET', url);
+      const data = this.makeRequest('GET', url);
       resolve(data)
     })
+  }
+
+  makeMultipartRequest(method, url, data = null) {
+    const formData = Object.keys(data).reduce((acc, dataKey) => {
+      let value = data[dataKey];
+      const formDataKey = value instanceof Array ? `${dataKey}[]` : dataKey;
+      acc.append(formDataKey, value);
+      return acc;
+    }, new FormData());
+    let fetchParams = {
+      method,
+      headers: {
+        'Accept': 'multipart/form-data'
+      },
+      body: JSON.stringify(data),
+      // body: formData,
+    };
+    return fetch(url, fetchParams)
+      .then(this.validateStatusCode)
+      .catch(this.onResponseInvalid)
   }
 
   makeRequest(method, url) {
