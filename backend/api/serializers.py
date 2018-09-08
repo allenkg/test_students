@@ -9,7 +9,8 @@ class StudentSerializer(object):
             'email': student.email,
             'phone_number': student.phone_number,
             'id_number': student.id_number,
-            'img': str(student.img.url)
+            'img': str(student.img.url) if student.img else None,
+            'courses': CourseSerializer.serialize(student.courses) if student.courses else None
         }
 
 

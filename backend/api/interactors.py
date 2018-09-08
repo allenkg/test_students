@@ -93,14 +93,15 @@ class StudentInteractor(object):
         self.errors = []
 
     def set_params(self, student_id, email=None, first_name=None, last_name=None, course_id=None, phone_number=None,
-                   id_number=None):
+                   id_number=None, file=None):
         self.student_id = student_id
         self.email = email,
         self.first_name = first_name,
         self.last_name = last_name,
         self.course = course_id,
         self.phone_number = phone_number,
-        self.id_number = id_number
+        self.id_number = id_number,
+        self.file = file
         return self
 
     def delete_student(self):
@@ -113,12 +114,12 @@ class StudentInteractor(object):
         self.validate()
         return self.student_repo.update_student(
             self.student_id,
-            self.email,
-            self.first_name,
-            self.last_name,
+            self.email[0],
+            self.first_name[0],
+            self.last_name[0],
             self.course,
-            self.phone_number,
-            self.id_number
+            self.phone_number[0],
+            self.id_number[0]
         )
 
     def validate(self):

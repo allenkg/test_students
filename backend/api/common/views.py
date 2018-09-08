@@ -43,7 +43,7 @@ class ViewWrapper(View):
         # kwargs.update({'logged_user_id': logged_user_id})
 
         if request.body:
-            kwargs.update(json.loads(request.data.decode()))
+            kwargs.update(json.loads(request.body.decode()))
         body, status = self.view_factory.create().put(**kwargs)
 
         return HttpResponse(json.dumps(body) if body else '', status=status, content_type='application/json')

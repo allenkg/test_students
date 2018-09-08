@@ -17,7 +17,7 @@ class Student(models.Model):
     email = models.EmailField(verbose_name="Email")
     phone_number = models.CharField(verbose_name='Phone number', max_length=100, blank=True, null=True)
     id_number = models.CharField(verbose_name='Id number', max_length=25)
-    courses = models.ManyToManyField(Course, related_name='courses_title', blank=True)
+    courses = models.ForeignKey(Course, related_name='courses_title', blank=True, null=True, on_delete=True)
     img = models.ImageField(verbose_name='Picture', blank=True, null=True, upload_to='students')
     is_deleted = models.BooleanField(verbose_name='Deleted', default=False)
 

@@ -48,6 +48,7 @@ class StudentRepo(object):
         student.phone_number = phone_number
         student.id_number = id_number
         self.save_student(student)
+        return student
 
 
 class CourseRepo(object):
