@@ -10,6 +10,20 @@ export const CHANGE_PHONE_NUMBER = 'STUDENTS_PAGE/CHANGE_PHONE_NUMBER';
 export const CHANGE_ID_NUMBER = 'STUDENTS_PAGE/CHANGE_ID_NUMBER';
 export const CHANGE_FILE = 'STUDENTS_PAGE/CHANGE_FILE';
 
+export const CREATE_STUDENT = 'STUDENTS_PAGE/CREATE_STUDENT';
+export const CREATE_STUDENT_SUCCESS = 'STUDENTS_PAGE/CREATE_STUDENT_SUCCESS';
+export const CREATE_STUDENT_FAILURE = 'STUDENTS_PAGE/CREATE_STUDENT_FAILURE';
+export const MODAL_SHOW = 'STUDENTS_PAGE/MODAL_SHOW';
+export const MODAL_HIDE = 'STUDENTS_PAGE/MODAL_Hide';
+
+function createStudentModalShow() {
+  return { type: MODAL_SHOW }
+}
+
+function createStudentModalHide() {
+  return { type: MODAL_HIDE }
+}
+
 function fetchStudents() {
   return async (dispatch, getState, api) => {
     dispatch({type: FETCH_DATA});
@@ -38,6 +52,7 @@ function getStudentDetails(studentId) {
 
 function save() {
   return async (dispatch, getState, api) => {
+    dispatch({ type: CREATE_STUDENT });
     try {
       const { firstName, lastName, email, idNumber, phoneNumber, student, file } = getState().studentsPage;
       const { course } = getState().coursesPage;
@@ -49,7 +64,7 @@ function save() {
         phone_number: phoneNumber,
         student_id: student.id,
         file: file,
-        course_id: course.id
+        course_id: course.id ? course : ''
       };
 
       const response = await api.updateStudent(payload);

@@ -6,7 +6,8 @@ import {
   FETCH_COURSE_DETAILS_SUCCESS,
   FETCH_COURSE_DETAILS_FAILURE,
   FETCH_COURSES_FAILURE,
-  FETCH_COURSES_SUCCESS, SHOW_MODAL, HIDE_MODAL
+  FETCH_COURSES_SUCCESS, SHOW_MODAL, HIDE_MODAL, CHANGE_TITLE, CHANGE_DESCRIPTION, CHANGE_COURSE_IMAGE, MODAL_SHOW,
+  MODAL_HIDE
 } from "../actions/courses-page";
 
 const INITIAL_STATE = {
@@ -14,7 +15,11 @@ const INITIAL_STATE = {
   isLoading: false,
   errors: {},
   course: {},
-  showModal: false
+  showModal: false,
+  title: '',
+  description: '',
+  img: null,
+  createCourseModalVisible: false
 };
 
 export default createReducer({
@@ -34,5 +39,20 @@ export default createReducer({
   [HIDE_MODAL]: (state, action) => merge(state, {
     course: {},
     showModal: false
+  }),
+  [CHANGE_TITLE]: (state, action) => merge(state, {
+    title: action.title
+  }),
+  [CHANGE_DESCRIPTION]: (state, action) => merge(state, {
+    description: action.description
+  }),
+  [CHANGE_COURSE_IMAGE]: (state, action) => merge(state, {
+    img: action.file
+  }),
+  [MODAL_SHOW]: (state, action) => merge(state, {
+    createCourseModalVisible: true
+  }),
+  [MODAL_HIDE]: (state, action) => merge(state, {
+    createCourseModalVisible: false
   })
 }, INITIAL_STATE)

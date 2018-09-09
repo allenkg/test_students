@@ -3,14 +3,25 @@ import {connect} from "react-redux";
 import MainPageActions from '../actions/main-page';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router';
-// export default (props) => props.children;
 import React from 'react';
-
+import CoursesPageActions from "../actions/courses-page";
+import StudentsPageActions from "../actions/students-page";
+import CreateCourseModal from "./CreateCourseModal.container";
 
 class Layout extends React.Component {
   constructor(props) {
     super(props)
   }
+  static propTypes = {
+    actions: PropTypes.shape({
+      createCourseModalShow: PropTypes.func.isRequired,
+      createStudentModalShow: PropTypes.func.isRequired
+    })
+  };
+
+  createStudentClick=()=> this.props.actions.createStudentModalShow();
+
+  createCourseClick=()=> this.props.actions.createCourseModalShow();
 
   render() {
     return (
@@ -23,12 +34,14 @@ class Layout extends React.Component {
           <nav className="my-2 my-md-0 mr-md-3">
             <input type="text" className="form-control" placeholder="Search..."/>
           </nav>
-          <a className="btn btn-outline-primary mr-1" href="#">Add student</a>
-          <a className="btn btn-outline-primary" href="#">Add course</a>
+          <a className="btn btn-outline-primary mr-1" href="#" onClick={this.createStudentClick}>Add student</a>
+          <a className="btn btn-outline-primary" href="#" onClick={this.createCourseClick}>Add course</a>
         </div>
         <div className="container">
           {this.props.children}
         </div>
+        <CreateCourseModal/>
+
       </div>
     );
   }
@@ -40,7 +53,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(MainPageActions, dispatch)
+    actions: bindActionCreators({
+      ...MainPageActions,
+      ...CoursesPageActions,
+      ...StudentsPageActions
+    }, dispatch)
   }
 }
 
