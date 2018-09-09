@@ -1,4 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "~react-bootstrap-modal/lib/css/rbm-complete.css";
 @import "./styles.css";
 @import "./fonts.css";
 @import "./media.css";

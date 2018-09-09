@@ -6,13 +6,15 @@ import {
   FETCH_COURSE_DETAILS_SUCCESS,
   FETCH_COURSE_DETAILS_FAILURE,
   FETCH_COURSES_FAILURE,
-  FETCH_COURSES_SUCCESS
+  FETCH_COURSES_SUCCESS, SHOW_MODAL, HIDE_MODAL
 } from "../actions/courses-page";
 
 const INITIAL_STATE = {
   courses: [],
   isLoading: false,
-  errors: {}
+  errors: {},
+  course: {},
+  showModal: false
 };
 
 export default createReducer({
@@ -24,5 +26,13 @@ export default createReducer({
   [FETCH_COURSES_FAILURE]: (state, action) => merge(state, {
     isLoading: false,
     errors: action.e
+  }),
+  [SHOW_MODAL]: (state, action) => merge(state, {
+    course: action.course,
+    showModal: true
+  }),
+  [HIDE_MODAL]: (state, action) => merge(state, {
+    course: {},
+    showModal: false
   })
 }, INITIAL_STATE)
