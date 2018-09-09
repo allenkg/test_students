@@ -54,12 +54,11 @@ class CourseInteractor(object):
         self.course_repo = course_repo
         self.errors = []
 
-    def set_params(self, course_id, title, description, img, student):
+    def set_params(self, course_id=None, title=None, description=None, img=None):
         self.course_id = course_id
         self.title = title
         self.description = description
         self.img = img
-        self.student = student
         return self
 
     def delete_course(self):
@@ -68,13 +67,12 @@ class CourseInteractor(object):
     def get_student(self):
         return self.course_repo.get_student_by_id(self.course_id)
 
-    def update_student(self):
+    def update_course(self):
         self.validate()
         return self.course_repo.update_course(
             self.course_id,
-            self.title,
-            self.description,
-            self.student
+            self.title[0],
+            self.description[0]
         )
 
     def validate(self):
@@ -153,8 +151,8 @@ class CreateCourseInteractor(object):
     def execute(self):
         self.validate()
         return self.course_repo.create_course(
-            self.title,
-            self.description,
+            self.title[0],
+            self.description[0],
             self.img
         )
 

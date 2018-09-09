@@ -71,6 +71,7 @@ class CourseRepo(object):
         course.description = description
         course.img = img
         course.save()
+        return course
 
     def save_course(self, sourse):
         sourse.save()
