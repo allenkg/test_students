@@ -2,6 +2,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import CoursesPageActions from '../actions/courses-page';
 import ModalCourse from "../components/ModalCourse";
+import StudentsPageActions from "../actions/students-page";
 
 
 function mapStateToProps(state) {
@@ -10,7 +11,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(CoursesPageActions, dispatch)
+        actions: bindActionCreators({
+          ...CoursesPageActions,
+          ...StudentsPageActions
+        }, dispatch)
     }
 }
 

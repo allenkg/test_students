@@ -40,6 +40,7 @@ function save() {
   return async (dispatch, getState, api) => {
     try {
       const { firstName, lastName, email, idNumber, phoneNumber, student, file } = getState().studentsPage;
+      const { course } = getState().coursesPage;
       const payload = {
         first_name: firstName,
         last_name: lastName,
@@ -47,7 +48,8 @@ function save() {
         id_number: idNumber,
         phone_number: phoneNumber,
         student_id: student.id,
-        file: file
+        file: file,
+        course_id: course.id
       };
 
       const response = await api.updateStudent(payload);

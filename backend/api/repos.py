@@ -38,13 +38,18 @@ class StudentRepo(object):
 
         return student
 
-    def update_student(self, student_id, email, first_name, last_name, course, phone_number, id_number):
+    def add_course(self, course_id):
+        return Course.objects.get(id=course_id)
+
+
+    def update_student(self, student_id, email, first_name, last_name, course_id, phone_number, id_number):
         student = self.get_student_by_id(student_id)
         student.student_id = student_id
         student.email = email if email else student.email
         student.first_name = first_name
         student.last_name = last_name
-        student.course = course
+        if course_id:
+            student.courses = self.add_course(course_id)
         student.phone_number = phone_number
         student.id_number = id_number
         self.save_student(student)

@@ -98,7 +98,7 @@ class StudentInteractor(object):
         self.email = email,
         self.first_name = first_name,
         self.last_name = last_name,
-        self.course = course_id,
+        self.course_id = course_id,
         self.phone_number = phone_number,
         self.id_number = id_number,
         self.file = file
@@ -117,7 +117,7 @@ class StudentInteractor(object):
             self.email[0],
             self.first_name[0],
             self.last_name[0],
-            self.course,
+            self.course_id[0],
             self.phone_number[0],
             self.id_number[0]
         )

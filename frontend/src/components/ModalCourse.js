@@ -18,6 +18,11 @@ class ModalCourse extends React.Component {
       </div>
   );
 
+  saveCourse=()=>{
+    this.props.actions.save();
+    this.props.actions.close();
+  };
+
   render() {
     const { showModal, actions, course } = this.props;
 
@@ -36,7 +41,7 @@ class ModalCourse extends React.Component {
         </Modal.Body>
         <Modal.Footer>
           <button className="btn btn-default" onClick={actions.close}> Cancel </button>
-          <button className="btn btn-success" onClick={actions.close}> Start course</button>
+          <button className="btn btn-success" onClick={this.saveCourse}> Start course</button>
         </Modal.Footer>
       </Modal>
     );

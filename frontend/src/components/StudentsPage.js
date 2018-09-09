@@ -17,7 +17,6 @@ class StudentsPage extends React.Component {
 
   render() {
     const {students} = this.props;
-    console.log(students);
     return (
       <div>
         <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
