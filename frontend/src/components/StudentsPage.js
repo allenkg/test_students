@@ -27,7 +27,7 @@ class StudentsPage extends React.Component {
 
         <div className="card-deck mb-3 text-center">
           {students.map((student, index) =>
-            <div className="col-lg-4">
+            <div className="col-lg-4" key={index}>
               <img className="rounded-circle" src={student.img ? student.img: studentAvatar} alt="Generic placeholder image" width="140"
                    height="140"/>
               <h2>{student.first_name} {student.last_name} </h2>
