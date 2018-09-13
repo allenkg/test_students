@@ -45,6 +45,9 @@ class GetAllStudentsInteractor(object):
     def __init__(self, student_repo):
         self.student_repo = student_repo
 
+    def set_params(self, page_number, offset):
+        pass
+
     def execute(self):
         return self.student_repo.get_all_students()
 
@@ -151,8 +154,8 @@ class CreateCourseInteractor(object):
     def execute(self):
         self.validate()
         return self.course_repo.create_course(
-            self.title[0],
-            self.description[0],
+            self.title,
+            self.description,
             self.img
         )
 

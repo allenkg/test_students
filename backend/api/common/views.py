@@ -1,7 +1,10 @@
 import json
 
-from django.http import HttpResponse
+from django.core.files.uploadhandler import MemoryFileUploadHandler
+from django.http import HttpResponse, QueryDict
+from django.http.multipartparser import MultiPartParser
 from django.views import View
+from io import BytesIO
 
 
 class ViewWrapper(View):
@@ -38,12 +41,22 @@ class ViewWrapper(View):
 
         return HttpResponse(json.dumps(body) if body else '', status=status, content_type='application/json')
 
+    def kwargs_update(self, request, kwargs):
+        handler = MemoryFileUploadHandler()
+        data = MultiPartParser(META=request.META, input_data=BytesIO(request.body), upload_handlers=[handler]).parse()
+
+        # myDict = dict(data.iterlists())
+        # qd = QueryDict(str(data[0]))
+
+        kwargs.update(json.loads(data))
+
     def put(self, request, *args, **kwargs):
         # logged_user_id = self._authorize(request)
         # kwargs.update({'logged_user_id': logged_user_id})
 
         if request.body:
             kwargs.update(json.loads(request.body.decode()))
+            # self.kwargs_update(request, kwargs)
         body, status = self.view_factory.create().put(**kwargs)
 
         return HttpResponse(json.dumps(body) if body else '', status=status, content_type='application/json')

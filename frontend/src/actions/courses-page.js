@@ -55,6 +55,7 @@ function createCourse() {
       const data = JSON.stringify(response);
       dispatch({type: CREATE_COURSE_SUCCESS, data});
       dispatch(push('/courses'));
+      dispatch(fetchCourses());
     } catch (e) {
       dispatch({type: CREATE_COURSE_FAILURE, e});
     }

@@ -2,3 +2,15 @@
 #modal-info {
     display: block;
 }
+.course-item-container {
+    border: solid gray 1px;
+    margin: 5px;
+    border-radius: 5px;
+}
+.description-course {
+    height:auto;
+    max-height:30px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    margin: 10px;
+}

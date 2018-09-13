@@ -27,7 +27,7 @@ class StudentRepo(object):
         return Student.objects.filter(email=email).exists()
 
     def get_all_students(self):
-        return Student.objects.all()
+        return Student.objects.filter(is_deleted=False)
 
     def delete_student(self, id):
         try:
@@ -77,7 +77,7 @@ class CourseRepo(object):
         sourse.save()
 
     def get_all_courses(self):
-        return Course.objects.all()
+        return Course.objects.filter(is_deleted=False)
 
     def delete_course(self, id):
         try:

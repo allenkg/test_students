@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router';
+import CoursesItem from "./CoursesItem";
 
 class CoursesPage extends React.Component {
   static propTypes = {
@@ -16,8 +16,10 @@ class CoursesPage extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
+    console.log(nextProps.courses, this.props.courses);
     return nextProps.courses !== this.props.courses
   }
+
 
   render() {
     const {courses, isLoading} = this.props;
@@ -33,18 +35,9 @@ class CoursesPage extends React.Component {
             example. It's built with default Bootstrap components and utilities with little customization.</p>
         </div>
 
-        <div className="card-deck mb-3 text-center">
+        <div className="card-deck mb-3 text-center ">
           {courses.map((course, index) =>
-            <div className="card" style={{width: "18rem"}} key={index}>
-              <p className="text-center mt-2">
-                <img className="card-img-top" src={'/asdj'} alt="Card image cap" style={{width: "40%"}}/>
-              </p>
-              <div className="card-body">
-                <h5 className="card-title">{course.title}</h5>
-                <p className="card-text" style={{fontSize: "1.5vw"}}>{course.description}</p>
-                <Link href={`/courses/${course.id}`} className="btn btn-primary" style={{fontSize: "1vw"}}>See course Students</Link>
-              </div>
-            </div>
+            <CoursesItem course={course} key={index}/>
           )}
         </div>
       </div>
