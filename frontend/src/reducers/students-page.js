@@ -4,7 +4,7 @@ import {
   FETCH_DATA,
   FETCH_DATA_SUCCESS,
   FETCH_DATA_FAILURE, GET_STUDENT_SUCCESS, GET_STUDENT_FAILURE, CHANGE_FIRST_NAME, CHANGE_LAST_NAME, CHANGE_EMAIL,
-  CHANGE_PHONE_NUMBER, CHANGE_ID_NUMBER, CHANGE_FILE
+  CHANGE_PHONE_NUMBER, CHANGE_ID_NUMBER, CHANGE_FILE, MODAL_HIDE, MODAL_SHOW
 } from '../actions/students-page';
 
 const INITIAL_STATE = {
@@ -19,7 +19,8 @@ const INITIAL_STATE = {
   idNumber: '',
   img: '',
   course: null,
-  file: null
+  file: null,
+  createStudentModalVisible: false
 };
 
 export default createReducer({
@@ -62,5 +63,11 @@ export default createReducer({
   }),
   [CHANGE_FILE]: (state, action) => merge(state, {
     file: action.file
+  }),
+  [MODAL_SHOW]: (state, action) => merge(state, {
+    createStudentModalVisible: true
+  }),
+  [MODAL_HIDE]: (state, action) => merge(state, {
+    createStudentModalVisible: false
   })
 }, INITIAL_STATE)

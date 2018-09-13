@@ -25,6 +25,13 @@ export default class Api {
     })
   }
 
+  createStudent(payload) {
+    return new Promise((resolve, reject) => {
+      let url = `/api/add-student`;
+      const data = this.makeMultipartRequest('POST', url, payload);
+      resolve(data)
+    })
+  }
   createCourse(payload) {
     return new Promise((resolve, reject) => {
       let url = `/api/add-course`;

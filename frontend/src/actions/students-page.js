@@ -1,3 +1,5 @@
+import {push} from "react-router-redux";
+
 export const FETCH_DATA = 'STUDENTS_PAGE/FETCH_DATA';
 export const FETCH_DATA_SUCCESS = 'STUDENTS_PAGE/FETCH_DATA_SUCCESS';
 export const FETCH_DATA_FAILURE = 'STUDENTS_PAGE/FETCH_DATA_FAILURE';
@@ -50,6 +52,32 @@ function getStudentDetails(studentId) {
   }
 }
 
+function createStudent() {
+  return async (dispatch, getState, api) => {
+    dispatch({ type: CREATE_STUDENT });
+    try {
+      const { firstName, lastName, email, idNumber, phoneNumber, student, file } = getState().studentsPage;
+      const { course } = getState().coursesPage;
+      const payload = {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        id_number: idNumber,
+        phone_number: phoneNumber,
+        student_id: student.id,
+        file: file,
+        course: course.id ? course : ''
+      };
+
+      const response = await api.createStudent(payload);
+      const data = JSON.parse(response);
+      dispatch({type: GET_STUDENT_SUCCESS, data});
+      dispatch(push(`/students/${data.id}`))
+    } catch (e) {
+      dispatch({type: GET_STUDENT_FAILURE, e})
+    }
+  }
+}
 function save() {
   return async (dispatch, getState, api) => {
     dispatch({ type: CREATE_STUDENT });
@@ -64,7 +92,7 @@ function save() {
         phone_number: phoneNumber,
         student_id: student.id,
         file: file,
-        course_id: course.id ? course : ''
+        course: course.id ? course : ''
       };
 
       const response = await api.updateStudent(payload);
@@ -111,5 +139,8 @@ export default {
   changePhoneNumber,
   changeIdNumber,
   changeImage,
-  save
+  createStudentModalShow,
+  createStudentModalHide,
+  save,
+  createStudent
 }

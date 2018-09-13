@@ -7,6 +7,7 @@ import React from 'react';
 import CoursesPageActions from "../actions/courses-page";
 import StudentsPageActions from "../actions/students-page";
 import CreateCourseModal from "./CreateCourseModal.container";
+import CreateStudentModal from "./CreateStudentModal.container";
 
 class Layout extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Layout extends React.Component {
           {this.props.children}
         </div>
         <CreateCourseModal/>
-
+        <CreateStudentModal/>
       </div>
     );
   }
