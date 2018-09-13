@@ -31,8 +31,6 @@ class CreateStudentInteractor(object):
             self.errors.append(Error('last_name', 'empty'))
         if not self.email:
             self.errors.append(Error('email', 'empty'))
-        else:
-            self.errors.append(Error('email', 'already_used'))
         if not self.phone_number:
             self.errors.append(Error('phone_number', 'empty'))
         if not self.id_number:
@@ -93,15 +91,15 @@ class StudentInteractor(object):
         self.student_repo = student_repo
         self.errors = []
 
-    def set_params(self, student_id, email=None, first_name=None, last_name=None, course_id=None, phone_number=None,
+    def set_params(self, student_id, email=None, first_name=None, last_name=None, course=None, phone_number=None,
                    id_number=None, file=None):
         self.student_id = student_id
-        self.email = email,
-        self.first_name = first_name,
-        self.last_name = last_name,
-        self.course_id = course_id,
-        self.phone_number = phone_number,
-        self.id_number = id_number,
+        self.email = str(email),
+        self.first_name = str(first_name),
+        self.last_name = str(last_name),
+        self.course = course,
+        self.phone_number = str(phone_number),
+        self.id_number = str(id_number),
         self.file = file
         return self
 
@@ -118,7 +116,7 @@ class StudentInteractor(object):
             self.email[0],
             self.first_name[0],
             self.last_name[0],
-            self.course_id[0],
+            self.course[0],
             self.phone_number[0],
             self.id_number[0]
         )
