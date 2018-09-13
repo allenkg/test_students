@@ -79,7 +79,7 @@ function getCourseDetails(courseId) {
   return async (dispatch, getState, api) => {
     dispatch({type: FETCH_COURSES});
     try {
-      const response = await api.getCourseDetails(courseId);
+      const response = await api.getCourse(courseId);
       const data = JSON.parse(response);
       dispatch({type: FETCH_COURSE_DETAILS_SUCCESS, data})
     } catch (e) {

@@ -11,9 +11,7 @@ class CoursesItem extends React.Component {
     const { course } = this.props;
     return (
       <div className="col-md-3 mb-3">
-        <p className="text-center mt-2">
-          <img className="" src={'/asdj'} alt="Card image cap" style={{width: "40%"}}/>
-        </p>
+
         <div >
           <h5 >{course.title}</h5>
           <div className="description-course"> <small style={{fontSize: "1vw"}}>{course.description}</small></div>

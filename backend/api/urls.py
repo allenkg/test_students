@@ -10,5 +10,5 @@ urlpatterns = [
     path('student/<int:student_id>', ViewWrapper.as_view(view_factory=ItemStudentViewFactory)),
     path('add-course', ViewWrapper.as_view(view_factory=CreateCourseViewFactory)),
     path('courses', ViewWrapper.as_view(view_factory=GetAllCoursesViewFactory)),
-    path('course/<:course_id>', ViewWrapper.as_view(view_factory=ItemCourseViewFactory))
+    path('course/<int:course_id>', ViewWrapper.as_view(view_factory=ItemCourseViewFactory))
 ]
