@@ -79,6 +79,10 @@ class CourseRepo(object):
     def get_all_courses(self):
         return Course.objects.filter(is_deleted=False)
 
+    def get_all_course_students(self, course_id):
+        print(course_id)
+        return Student.objects.filter(courses_id=course_id[0], is_deleted=False)
+
     def delete_course(self, id):
         try:
             course = Course.objects.get(pk=id)

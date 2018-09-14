@@ -24,10 +24,10 @@ class GetAllStudentsView(object):
     def __init__(self, get_all_students_interactor):
         self.get_all_students_interactor = get_all_students_interactor
 
-    def get(self):
+    def get(self, **kwargs):
         body = []
         try:
-            students = self.get_all_students_interactor.execute()
+            students = self.get_all_students_interactor.set_params(**kwargs).execute()
             if students:
                 for student in students:
                     body.append(StudentSerializer.serialize(student))
@@ -133,13 +133,17 @@ class GetAllCoursesView(object):
     def __init__(self, get_all_courses_interactor):
         self.get_all_courses_interactor = get_all_courses_interactor
 
-    def get(self):
+    def get(self, **kwargs):
         body = []
         try:
-            courses = self.get_all_courses_interactor.execute()
+            courses = self.get_all_courses_interactor.set_params(**kwargs).execute()
             if courses:
                 for course in courses:
-                    body.append(CourseSerializer.serialize(course))
+                    try:
+                        if course.title:
+                            body.append(CourseSerializer.serialize(course))
+                    except:
+                        body.append(StudentSerializer.serialize(course))
             status = HTTP_STATUS_OK_CODE
         except InvalidEntityException as e:
             body = InvalidEntityExceptionSerializer.serialize(e)

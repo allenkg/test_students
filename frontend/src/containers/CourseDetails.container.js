@@ -8,6 +8,7 @@ function mapStateToProps(state, ownProps) {
   console.log(ownProps);
   return {
     ...state.mainPage,
+    ...state.coursesPage,
     courseId: ownProps.params.courseId
   }
 }

@@ -54,5 +54,13 @@ export default createReducer({
   }),
   [MODAL_HIDE]: (state, action) => merge(state, {
     createCourseModalVisible: false
+  }),
+  [FETCH_COURSE_DETAILS_SUCCESS]: (state, action) => merge(state, {
+    isLoading: false,
+    course: action.data
+  }),
+  [FETCH_COURSE_DETAILS_FAILURE]: (state, action) => merge(state, {
+    isLoading: false,
+    errors: action.e
   })
 }, INITIAL_STATE)

@@ -18,8 +18,13 @@ export const CREATE_COURSE_FAILURE = 'COURSE_PAGE/CREATE_COURSE_FAILURE';
 export const CHANGE_TITLE = 'COURSE_PAGE/CHANGE_TITLE';
 export const CHANGE_DESCRIPTION = 'COURSE_PAGE/CHANGE_DESCRIPTION';
 export const CHANGE_COURSE_IMAGE = 'COURSE_PAGE/CHANGE_COURSE_IMAGE';
+
 export const MODAL_SHOW = 'COURSE_PAGE/MODAL_SHOW';
 export const MODAL_HIDE = 'COURSE_PAGE/MODAL_Hide';
+
+export const FETCH_COURSE_STUDENTS = 'COURSE_PAGE/FETCH_COURSE_STUDENTS';
+export const FETCH_COURSE_STUDENTS_SUCCESS = 'COURSE_PAGE/FETCH_COURSE_STUDENTS_SUCCESS';
+export const FETCH_COURSE_STUDENTS_FAILURE = 'COURSE_PAGE/FETCH_COURSE_STUDENTS_FAILURE';
 
 function createCourseModalShow() {
   return {type: MODAL_SHOW}
@@ -96,6 +101,18 @@ function close() {
   return {type: HIDE_MODAL}
 }
 
+function fetchCourseStudents(courseId) {
+  return async (dispatch, getState, api) => {
+    dispatch({type: FETCH_COURSE_STUDENTS });
+    try {
+      const response = await api.getCourseStudents(courseId);
+      const data = JSON.parse(response);
+      dispatch({type: FETCH_COURSE_STUDENTS_SUCCESS, data})
+    } catch (e) {
+      dispatch({type: FETCH_COURSE_STUDENTS_FAILURE, e})
+    }
+  }
+}
 
 export default {
   fetchCourses,
@@ -107,5 +124,6 @@ export default {
   changeCourseImage,
   createCourse,
   createCourseModalShow,
-  createCourseModalHide
+  createCourseModalHide,
+  fetchCourseStudents
 }

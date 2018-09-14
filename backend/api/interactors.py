@@ -43,8 +43,10 @@ class GetAllStudentsInteractor(object):
     def __init__(self, student_repo):
         self.student_repo = student_repo
 
-    def set_params(self, page_number, offset):
-        pass
+    def set_params(self, page_number=None, offset=None):
+        self.page_number = page_number
+        self.offset = offset
+        return self
 
     def execute(self):
         return self.student_repo.get_all_students()
@@ -171,4 +173,11 @@ class GetAllCoursesInteractor(object):
         self.course_repo = course_repo
 
     def execute(self):
-        return self.course_repo.get_all_courses()
+        if not self.course_id:
+            return self.course_repo.get_all_courses()
+        else:
+            return self.course_repo.get_all_course_students(self.course_id)
+
+    def set_params(self, course_id=None):
+        self.course_id = course_id
+        return self

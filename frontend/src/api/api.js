@@ -24,6 +24,14 @@ export default class Api {
     })
   }
 
+  getCourseStudents(course_id) {
+    return new Promise((resolve, reject) => {
+      let url = `/api/courses?course_id=${course_id}`;
+      const data = this.makeRequest('GET', url);
+      resolve(data)
+    })
+  }
+
   updateStudent(payload) {
     return new Promise((resolve, reject) => {
       const student_id = payload.student_id;

@@ -24,16 +24,15 @@ class ViewWrapper(View):
             return self.http_method_not_allowed(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        # logged_user_id = self._authorize(request)
-        # kwargs.update({'logged_user_id': logged_user_id})
+
+        if request.GET:
+            kwargs.update(request.GET)
 
         body, status = self.view_factory.create().get(**kwargs)
 
         return HttpResponse(json.dumps(body) if body else '', status=status, content_type='application/json')
 
     def post(self, request, *args, **kwargs):
-        # logged_user_id = self._authorize(request)
-        # kwargs.update({'logged_user_id': logged_user_id})
 
         if request.body:
             kwargs.update(json.loads(request.body.decode()))
@@ -51,8 +50,6 @@ class ViewWrapper(View):
         kwargs.update(json.loads(data))
 
     def put(self, request, *args, **kwargs):
-        # logged_user_id = self._authorize(request)
-        # kwargs.update({'logged_user_id': logged_user_id})
 
         if request.body:
             kwargs.update(json.loads(request.body.decode()))
@@ -62,8 +59,6 @@ class ViewWrapper(View):
         return HttpResponse(json.dumps(body) if body else '', status=status, content_type='application/json')
 
     def delete(self, request, *args, **kwargs):
-        # logged_user_id = self._authorize(request)
-        # kwargs.update({'logged_user_id': logged_user_id})
 
         if request.body:
             kwargs.update(json.loads(request.data.decode()))
@@ -72,10 +67,4 @@ class ViewWrapper(View):
         return HttpResponse(json.dumps(body) if body else '', status=status, content_type='application/json')
 
     def _authorize(self, request):
-        # auth_header = request.META.get('HTTP_AUTHORIZATION')
-        # if auth_header is None:
-        #     return None
-        #
-        # token = auth_header.replace('JWT ', '')
-        # return AuthorizeUserInteractorFactory.create().set_params(token).execute()
         pass
