@@ -6,6 +6,7 @@ import {
   FETCH_DATA_FAILURE, GET_STUDENT_SUCCESS, GET_STUDENT_FAILURE, CHANGE_FIRST_NAME, CHANGE_LAST_NAME, CHANGE_EMAIL,
   CHANGE_PHONE_NUMBER, CHANGE_ID_NUMBER, CHANGE_FILE, MODAL_HIDE, MODAL_SHOW
 } from '../actions/students-page';
+import {FETCH_COURSE_STUDENTS_SUCCESS} from "../actions/courses-page";
 
 const INITIAL_STATE = {
   students: [],
@@ -69,5 +70,9 @@ export default createReducer({
   }),
   [MODAL_HIDE]: (state, action) => merge(state, {
     createStudentModalVisible: false
+  }),
+  [FETCH_COURSE_STUDENTS_SUCCESS]: (state, action) => merge(state, {
+    isLoading: false,
+    students: action.data
   })
 }, INITIAL_STATE)

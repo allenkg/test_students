@@ -26,6 +26,10 @@ export const FETCH_COURSE_STUDENTS = 'COURSE_PAGE/FETCH_COURSE_STUDENTS';
 export const FETCH_COURSE_STUDENTS_SUCCESS = 'COURSE_PAGE/FETCH_COURSE_STUDENTS_SUCCESS';
 export const FETCH_COURSE_STUDENTS_FAILURE = 'COURSE_PAGE/FETCH_COURSE_STUDENTS_FAILURE';
 
+export const REMOVE_STUDENT_FROM_COURSE = 'COURSE_PAGE/REMOVE_STUDENT_FROM_COURSE';
+export const REMOVE_STUDENT_FROM_COURSE_SUCCESS = 'COURSE_PAGE/REMOVE_STUDENT_FROM_COURSE_SUCCESS';
+export const REMOVE_STUDENT_FROM_COURSE_FAILURE = 'COURSE_PAGE/REMOVE_STUDENT_FROM_COURSE_FAILURE';
+
 function createCourseModalShow() {
   return {type: MODAL_SHOW}
 }
@@ -114,6 +118,20 @@ function fetchCourseStudents(courseId) {
   }
 }
 
+function removeStudentFromCourse(courseId, studentId) {
+  return async (dispatch, getState, api) => {
+    dispatch({type: REMOVE_STUDENT_FROM_COURSE });
+    try {
+      const response = await api.removeStudent(courseId, studentId);
+      const data = JSON.parse(response);
+      dispatch({type: REMOVE_STUDENT_FROM_COURSE_SUCCESS });
+      dispatch(fetchCourseStudents(courseId));
+    } catch (e) {
+      dispatch({type: REMOVE_STUDENT_FROM_COURSE_FAILURE, e})
+    }
+  }
+}
+
 export default {
   fetchCourses,
   getCourseDetails,
@@ -125,5 +143,6 @@ export default {
   createCourse,
   createCourseModalShow,
   createCourseModalHide,
-  fetchCourseStudents
+  fetchCourseStudents,
+  removeStudentFromCourse
 }

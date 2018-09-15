@@ -32,6 +32,14 @@ export default class Api {
     })
   }
 
+  removeStudent(course_id, student_id) {
+    return new Promise((resolve, reject) => {
+      let url = `/api/student/${student_id}?course_id=${course_id}`;
+      const data = this.makeRequest('DELETE', url);
+      resolve(data)
+    })
+  }
+
   updateStudent(payload) {
     return new Promise((resolve, reject) => {
       const student_id = payload.student_id;

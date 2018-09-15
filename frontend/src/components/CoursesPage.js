@@ -15,12 +15,6 @@ class CoursesPage extends React.Component {
     this.props.actions.fetchCourses();
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log(nextProps.courses, this.props.courses);
-    return nextProps.courses !== this.props.courses
-  }
-
-
   render() {
     const {courses, isLoading} = this.props;
 
