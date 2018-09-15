@@ -97,7 +97,7 @@ class CourseDetails extends React.Component {
         <h4>{course.title}</h4>
         <p>{course.description}</p>
         <div className="mt-lg-4 mb">
-          <h5>student of this course</h5>
+          <h5>{course.title} students </h5>
           <CourseUsersTable
             students={students}
             keyField="id"

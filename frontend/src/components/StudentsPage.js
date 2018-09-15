@@ -21,16 +21,14 @@ class StudentsPage extends React.Component {
       <div>
         <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
           <h1 className="display-4">Students</h1>
-          <p className="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap
-            example. It's built with default Bootstrap components and utilities with little customization.</p>
         </div>
 
         <div className="card-deck mb-3 text-center">
           {students.map((student, index) =>
-            <div className="col-lg-4" key={index}>
+            <div className="col-lg-3" key={index}>
               <img className="rounded-circle" src={student.img ? student.img: studentAvatar} alt="Generic placeholder image" width="140"
                    height="140"/>
-              <h2>{student.first_name} {student.last_name} </h2>
+              <h5>{student.first_name} {student.last_name} </h5>
               <p><Link to={`/students/${student.id}`} className="btn btn-secondary" href="#" role="button">View details »</Link></p>
             </div>
           )}

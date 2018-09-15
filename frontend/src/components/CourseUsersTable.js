@@ -8,7 +8,6 @@ class CourseUsersTable extends React.Component {
   static propTypes = {
     students: PropTypes.array.isRequired,
     error: PropTypes.string,
-    noDataText: PropTypes.string,
     onReload: PropTypes.func.isRequired,
     columns: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     keyField: PropTypes.string
@@ -41,7 +40,7 @@ class CourseUsersTable extends React.Component {
       nextPage: '>',
       lastPage: '>>',
       paginationPosition: 'top',
-      noDataText: this.props.noDataText || "no data",
+      noDataText: "This course has no students",
       btnGroup: this.tableControls,
     }
   };
