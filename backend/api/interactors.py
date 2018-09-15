@@ -94,7 +94,7 @@ class StudentInteractor(object):
         self.errors = []
 
     def set_params(self, student_id, email=None, first_name=None, last_name=None, course=None, phone_number=None,
-                   id_number=None, file=None):
+                   id_number=None, file=None, course_id=None):
         self.student_id = student_id
         self.email = str(email),
         self.first_name = str(first_name),
@@ -103,10 +103,14 @@ class StudentInteractor(object):
         self.phone_number = str(phone_number),
         self.id_number = str(id_number),
         self.file = file
+        self.course_id = course_id
         return self
 
     def delete_student(self):
-        return self.student_repo.delete_student(self.student_id)
+        if self.course_id:
+            return self.student_repo.remove_from_course(self.student_id)
+        else:
+            return self.student_repo.delete_student(self.student_id)
 
     def get_student(self):
         return self.student_repo.get_student_by_id(self.student_id)

@@ -30,6 +30,12 @@ class StudentRepo(object):
     def get_all_students(self):
         return Student.objects.filter(is_deleted=False)
 
+    def remove_from_course(self, student_id):
+        student = Student.objects.get(id=student_id)
+        student.courses = None
+        student.save()
+        return student
+
     def delete_student(self, id):
         try:
             student = Student.objects.get(pk=id)
@@ -80,7 +86,6 @@ class CourseRepo(object):
         return Course.objects.filter(is_deleted=False)
 
     def get_all_course_students(self, course_id):
-        print(course_id)
         return Student.objects.filter(courses_id=course_id[0], is_deleted=False)
 
     def delete_course(self, id):

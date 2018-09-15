@@ -61,7 +61,9 @@ class ViewWrapper(View):
     def delete(self, request, *args, **kwargs):
 
         if request.body:
-            kwargs.update(json.loads(request.data.decode()))
+            kwargs.update(json.loads(request.body.decode()))
+        if request.GET:
+            kwargs.update(request.GET)
         body, status = self.view_factory.create().delete(**kwargs)
 
         return HttpResponse(json.dumps(body) if body else '', status=status, content_type='application/json')
