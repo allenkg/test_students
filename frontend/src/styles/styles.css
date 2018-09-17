@@ -57,3 +57,7 @@ td:focus {
 .pagination>li {
     margin-left: 5px;
 }
+.pagination>select {
+    height: 38px;
+    margin-left: 10px;
+}

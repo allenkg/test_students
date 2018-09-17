@@ -86,28 +86,31 @@ class CourseRepo(object):
     def save_course(self, sourse):
         sourse.save()
 
-    def get_all_courses(self, offset, page_number):
+    def get_all_courses(self, offset=None, page_number=None):
         courses = Course.objects.filter(is_deleted=False)
         response = {}
-        if offset[0] != 'undefined':
+        if offset:
             page_number = int(page_number[0])
             offset = int(offset[0])
             page_offset = 0
-            if page_number == 1:
+            if page_number <= 1:
                 response = {
                     'courses': courses[:offset],
-                    'allPages': len(courses)
+                    'allPages': len(courses),
+                    'offset': offset
                 }
             else:
                 page_offset = offset * page_number
                 response = {
                     'courses': courses[offset:page_offset],
-                    'allPages': len(courses)
+                    'allPages': len(courses),
+                    'offset': offset
                 }
         else:
             response = {
                 'courses': courses,
-                'allPages': len(courses)
+                'allPages': len(courses),
+                'offset': offset
             }
         return response
 
@@ -115,7 +118,8 @@ class CourseRepo(object):
         students = Student.objects.filter(courses_id=course_id[0], is_deleted=False)
         response = {
             'courses': students,
-            'allPages': len(students)
+            'allPages': len(students),
+            'offset': ''
         }
         return response
 
@@ -139,6 +143,7 @@ class CourseRepo(object):
         course = Course.objects.filter(title__icontains=search_query[0])
         response = {
             'courses': course,
-            'allPages': len(course)
+            'allPages': len(course),
+            'offset': ''
         }
         return response

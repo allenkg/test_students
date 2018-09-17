@@ -82,7 +82,7 @@ export default class Api {
 
   getCourses(offset, page_number) {
     return new Promise((resolve, reject) => {
-      let url = `/api/courses?offset=${offset}&page_number=${page_number}`;
+      let url = `/api/courses${offset ? `?offset=${offset}&page_number=${page_number}`: ''}`;
       const data = this.makeRequest('GET', url);
       resolve(data)
     })

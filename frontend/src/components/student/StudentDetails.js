@@ -27,12 +27,13 @@ class StudentDetails extends React.Component {
       changeIdNumber: PropTypes.func,
       changeImage: PropTypes.func,
       showCourseDetails: PropTypes.func,
-      save: PropTypes.func
+      save: PropTypes.func,
+      setInitialState: PropTypes.func
     }.isRequired)
   };
 
   componentDidMount() {
-    this.props.actions.fetchCourses();
+    this.props.actions.fetchCourses(null, null);
     this.props.actions.getStudentDetails(this.props.studentId);
   }
 

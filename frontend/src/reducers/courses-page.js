@@ -22,6 +22,7 @@ const INITIAL_STATE = {
   createCourseModalVisible: false,
   totalPages: 0,
   currentPage: 1,
+  offset: 5
 };
 
 export default createReducer({
@@ -30,6 +31,7 @@ export default createReducer({
     courses: action.data.data,
     totalPages: action.data.allPages,
     currentPage: parseInt(action.pageNumber) - 1,
+    offset: parseInt(action.data.offset),
     isLoading: false
   }),
   [FETCH_COURSES_FAILURE]: (state, action) => merge(state, {

@@ -140,6 +140,7 @@ class GetAllCoursesView(object):
             response = self.get_all_courses_interactor.set_params(**kwargs).execute()
             if response['courses']:
                 body['allPages'] = response['allPages']
+                body['offset'] = response['offset']
                 for course in response['courses']:
                     try:
                         if course.title:
