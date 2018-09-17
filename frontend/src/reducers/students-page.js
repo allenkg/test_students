@@ -4,7 +4,7 @@ import {
   FETCH_DATA,
   FETCH_DATA_SUCCESS,
   FETCH_DATA_FAILURE, GET_STUDENT_SUCCESS, GET_STUDENT_FAILURE, CHANGE_FIRST_NAME, CHANGE_LAST_NAME, CHANGE_EMAIL,
-  CHANGE_PHONE_NUMBER, CHANGE_ID_NUMBER, CHANGE_FILE, MODAL_HIDE, MODAL_SHOW
+  CHANGE_PHONE_NUMBER, CHANGE_ID_NUMBER, CHANGE_FILE, MODAL_HIDE, MODAL_SHOW, SET_INITIAL_STATE
 } from '../actions/students-page';
 import {FETCH_COURSE_STUDENTS_SUCCESS} from "../actions/courses-page";
 
@@ -74,5 +74,6 @@ export default createReducer({
   [FETCH_COURSE_STUDENTS_SUCCESS]: (state, action) => merge(state, {
     isLoading: false,
     students: action.data
-  })
+  }),
+  [SET_INITIAL_STATE]: (state) => merge(state, INITIAL_STATE)
 }, INITIAL_STATE)

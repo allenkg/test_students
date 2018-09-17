@@ -17,6 +17,7 @@ export const CREATE_STUDENT_SUCCESS = 'STUDENTS_PAGE/CREATE_STUDENT_SUCCESS';
 export const CREATE_STUDENT_FAILURE = 'STUDENTS_PAGE/CREATE_STUDENT_FAILURE';
 export const MODAL_SHOW = 'STUDENTS_PAGE/MODAL_SHOW';
 export const MODAL_HIDE = 'STUDENTS_PAGE/MODAL_Hide';
+export const SET_INITIAL_STATE = 'STUDENTS_PAGE/SET_INITIAL_STATE';
 
 function createStudentModalShow() {
   return { type: MODAL_SHOW }
@@ -129,6 +130,9 @@ function changeImage(file) {
   return {type: CHANGE_FILE, file}
 }
 
+function setInitialState() {
+  return { type: SET_INITIAL_STATE }
+}
 
 export default {
   fetchStudents,
@@ -142,5 +146,6 @@ export default {
   createStudentModalShow,
   createStudentModalHide,
   save,
-  createStudent
+  createStudent,
+  setInitialState
 }

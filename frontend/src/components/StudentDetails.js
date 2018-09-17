@@ -49,7 +49,7 @@ class StudentDetails extends React.Component {
   saveChanges = () => this.props.actions.save();
 
   render() {
-    const {student, firstName, lastName, email, phoneNumber, idNumber, courses, course, showCourse} = this.props;
+    const { student, firstName, lastName, email, phoneNumber, idNumber, courses } = this.props;
 
     return (
       <div className="row mt-lg-4">
@@ -95,10 +95,10 @@ class StudentDetails extends React.Component {
               <div className="form-group">
                 <div className="col-xs-12">
                   <br/>
-                  <button className="btn btn-primary ml-4" onClick={this.saveChanges}><i
+                  <button className="btn btn-lg btn-primary ml-3" onClick={this.saveChanges}><i
                     className="glyphicon glyphicon-ok-sign"/> Save
                   </button>
-                  <button className="btn " type="reset"><i className="glyphicon glyphicon-repeat"/> Reset
+                  <button className="btn btn-lg btn-default"><i className="glyphicon glyphicon-repeat"/> Cancel
                   </button>
                 </div>
               </div>

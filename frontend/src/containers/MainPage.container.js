@@ -4,8 +4,8 @@ import MainPageActions from '../actions/main-page';
 import MainPage from '../components/MainPage';
 
 
-function mapStateToProps() {
-    return []
+function mapStateToProps(state) {
+    return state.mainPage
 }
 
 function mapDispatchToProps(dispatch) {

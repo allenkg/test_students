@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CoursesItem from "./CoursesItem";
+import ReactPaginate from 'react-paginate';
 
 class CoursesPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageCount: 0
+    }
+  }
+
   static propTypes = {
     courses: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,

@@ -18,8 +18,8 @@ class CourseUsersTable extends React.Component {
     this.props.onReload();
   };
 
-  tableControls = props => <a href="#" onClick={(e) => this.onReload(e)} className="btn btn-success">
-    <span className="fa fa-refresh"/>
+  tableControls = props => <a href="#" onClick={(e) => this.onReload(e)} className="btn btn-primary mb-3">
+    reload
   </a>;
 
   tableOptions = () => {
@@ -68,11 +68,12 @@ class CourseUsersTable extends React.Component {
     return (
       <div>
         {this.props.error && <div className="alert alert-danger">{this.props.error}</div>}
-        <BootstrapTable data={this.props.students}
-                        striped hover pagination
-                        options={this.tableOptions()}
-                        keyField={this.props.keyField}
-                        className="allow-overflow">
+        <BootstrapTable
+          data={this.props.students}
+          striped hover
+          options={this.tableOptions()}
+          keyField={this.props.keyField}
+          className="allow-overflow">
           {this.props.columns.map((col, index) => {
             return <TableHeaderColumn {...this.colProps(col, index)}>{col.title}</TableHeaderColumn>
           })}

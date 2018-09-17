@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import studentAvatar from "../styles/images/studentAvatar.jpeg";
-import {Link} from "react-router";
+import StudentItem from "./StudentItem";
+
 
 class StudentsPage extends React.Component {
   static propTypes = {
@@ -25,12 +25,7 @@ class StudentsPage extends React.Component {
 
         <div className="card-deck mb-3 text-center">
           {students.map((student, index) =>
-            <div className="col-lg-3" key={index}>
-              <img className="rounded-circle" src={student.img ? student.img: studentAvatar} alt="Generic placeholder image" width="140"
-                   height="140"/>
-              <h5>{student.first_name} {student.last_name} </h5>
-              <p><Link to={`/students/${student.id}`} className="btn btn-secondary" href="#" role="button">View details »</Link></p>
-            </div>
+            <StudentItem key={index} student={student}/>
           )}
         </div>
 

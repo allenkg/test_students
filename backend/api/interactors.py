@@ -43,13 +43,17 @@ class GetAllStudentsInteractor(object):
     def __init__(self, student_repo):
         self.student_repo = student_repo
 
-    def set_params(self, page_number=None, offset=None):
+    def set_params(self, page_number=None, offset=None, search_query=None):
         self.page_number = page_number
         self.offset = offset
+        self.search_query = search_query
         return self
 
     def execute(self):
-        return self.student_repo.get_all_students()
+        if self.search_query:
+            return self.student_repo.search_student(self.search_query)
+        else:
+            return self.student_repo.get_all_students()
 
 
 class CourseInteractor(object):
@@ -79,7 +83,6 @@ class CourseInteractor(object):
         )
 
     def validate(self):
-        course = self.course_repo.get_course_by_id(self.course_id)
         if not self.title:
             self.errors.append(Error('title', 'empty'))
         if not self.description:
@@ -177,11 +180,14 @@ class GetAllCoursesInteractor(object):
         self.course_repo = course_repo
 
     def execute(self):
-        if not self.course_id:
+        if not self.course_id and not self.search_query:
             return self.course_repo.get_all_courses()
+        elif self.search_query:
+            return self.course_repo.search_course(self.search_query)
         else:
             return self.course_repo.get_all_course_students(self.course_id)
 
-    def set_params(self, course_id=None):
+    def set_params(self, course_id=None, search_query=None):
         self.course_id = course_id
+        self.search_query = search_query
         return self

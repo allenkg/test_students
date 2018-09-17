@@ -24,8 +24,8 @@ class StudentDetailsImageBlock extends React.Component {
         <div className="text-center">
           <img src={studentImage} className="avatar img-circle img-thumbnail"
                alt="avatar"/>
-          <h6>Upload a different photo...</h6>
-          <input type="file" className="text-center center-block file-upload" onChange={this.changeImageClickHandler}/>
+          {/*<h6>Upload a different photo...</h6>*/}
+          {/*<input type="file" className="text-center center-block file-upload" onChange={this.changeImageClickHandler}/>*/}
         </div>
         <hr/>
         <br/>

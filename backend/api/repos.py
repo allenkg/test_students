@@ -48,6 +48,10 @@ class StudentRepo(object):
     def add_course(self, course_id):
         return Course.objects.get(id=course_id)
 
+    def search_student(self, search_query):
+        students = Student.objects.filter(first_name__icontains=search_query[0])
+        return students
+
     def update_student(self, student_id, email, first_name, last_name, course, phone_number, id_number):
         student = self.get_student_by_id(student_id)
         student.student_id = student_id
@@ -103,3 +107,6 @@ class CourseRepo(object):
         course.description = description
         course.img = img
         course.save()
+
+    def search_course(self, search_query):
+        return Course.objects.filter(title__icontains=search_query[0])

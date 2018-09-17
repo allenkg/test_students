@@ -14,6 +14,7 @@ class CreateCourseModal extends React.Component {
       changeDescription: PropTypes.func.isRequired,
       changeCourseImage: PropTypes.func.isRequired,
       createCourse: PropTypes.func.isRequired,
+      setInitialState: PropTypes.func.isRequired
     })
   };
 
@@ -22,11 +23,23 @@ class CreateCourseModal extends React.Component {
     this.props.actions.createCourseModalHide()
   };
 
-  renderBody=() => {
+  componentWillUnmount() {
+    this.props.actions.setInitialState();
+  }
+
+  renderBody = () => {
     return (
       <div>
-        <input type="text" onChange={this.titleChangeClick} value={this.props.title} placeholder="Course Title"/>
-        <input type="text" onChange={this.descriptionChangeClick} value={this.props.description} placeholder="Description"/>
+        <div className="form-group">
+          <label htmlFor="title">Course Title</label>
+          <input type="text" className="form-control" id="title" onChange={this.titleChangeClick}
+                 value={this.props.title} placeholder="Course Title"/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="descriptionCourse">Description</label>
+          <textarea class="form-control" id="descriptionCourse" rows="3" onChange={this.descriptionChangeClick}
+                    value={this.props.description} placeholder="Description"/>
+        </div>
       </div>
     )
   };
@@ -42,7 +55,7 @@ class CreateCourseModal extends React.Component {
   };
 
   render() {
-    const { createCourseModalVisible, actions } = this.props;
+    const {createCourseModalVisible, actions} = this.props;
     return (
       <Modal
         show={createCourseModalVisible}
@@ -58,7 +71,7 @@ class CreateCourseModal extends React.Component {
         </Modal.Body>
         <Modal.Footer>
           <button className="btn btn-default" onClick={actions.createCourseModalHide}> Cancel</button>
-          <button className="btn btn-success" onClick={this.saveCourse}> Start course</button>
+          <button className="btn btn-primary" onClick={this.saveCourse}> Start course</button>
         </Modal.Footer>
       </Modal>
     );

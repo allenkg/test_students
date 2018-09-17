@@ -16,9 +16,12 @@ class Layout extends React.Component {
   static propTypes = {
     actions: PropTypes.shape({
       createCourseModalShow: PropTypes.func.isRequired,
-      createStudentModalShow: PropTypes.func.isRequired
+      createStudentModalShow: PropTypes.func.isRequired,
+      inputSearchQuery: PropTypes.func.isRequired
     })
   };
+
+  changeSearchQuery=(e)=> this.props.actions.inputSearchQuery(e.target.value);
 
   createStudentClick=()=> this.props.actions.createStudentModalShow();
 
@@ -33,7 +36,7 @@ class Layout extends React.Component {
           <Link className="p-2 text-dark" to="/courses"> Courses </Link>
           <Link className="p-2 text-dark" to="/students"> Students </Link>
           <nav className="my-2 my-md-0 mr-md-3">
-            <input type="text" className="form-control" placeholder="Search..."/>
+            <input type="text" className="form-control" placeholder="Search..." onChange={this.changeSearchQuery}/>
           </nav>
           <a className="btn btn-outline-primary mr-1" href="#" onClick={this.createStudentClick}>Add student</a>
           <a className="btn btn-outline-primary" href="#" onClick={this.createCourseClick}>Add course</a>

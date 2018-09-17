@@ -8,9 +8,6 @@ export const FETCH_COURSE_DETAILS_FAILURE = 'COURSE_PAGE/FETCH_COURSE_DETAILS_FA
 
 export const SHOW_MODAL = 'COURSE_PAGE/SHOW_MODAL';
 export const HIDE_MODAL = 'COURSE_PAGE/HIDE_MODAL';
-export const CHANGE_COURSE = 'COURSE_PAGE/CHANGE_COURSE';
-export const CHANGE_COURSE_SUCCESS = 'COURSE_PAGE/CHANGE_COURSE_SUCCESS';
-export const CHANGE_COURSE_FAILURE = 'COURSE_PAGE/CHANGE_COURSE_FAILURE';
 
 export const CREATE_COURSE = 'COURSE_PAGE/CREATE_COURSE';
 export const CREATE_COURSE_SUCCESS = 'COURSE_PAGE/CREATE_COURSE_SUCCESS';
@@ -29,6 +26,8 @@ export const FETCH_COURSE_STUDENTS_FAILURE = 'COURSE_PAGE/FETCH_COURSE_STUDENTS_
 export const REMOVE_STUDENT_FROM_COURSE = 'COURSE_PAGE/REMOVE_STUDENT_FROM_COURSE';
 export const REMOVE_STUDENT_FROM_COURSE_SUCCESS = 'COURSE_PAGE/REMOVE_STUDENT_FROM_COURSE_SUCCESS';
 export const REMOVE_STUDENT_FROM_COURSE_FAILURE = 'COURSE_PAGE/REMOVE_STUDENT_FROM_COURSE_FAILURE';
+
+export const SET_INITIAL_STATE = 'COURSE_PAGE/SET_INITIAL_STATE';
 
 function createCourseModalShow() {
   return {type: MODAL_SHOW}
@@ -132,6 +131,10 @@ function removeStudentFromCourse(courseId, studentId) {
   }
 }
 
+function setInitialState() {
+  return { type: SET_INITIAL_STATE }
+}
+
 export default {
   fetchCourses,
   getCourseDetails,
@@ -144,5 +147,6 @@ export default {
   createCourseModalShow,
   createCourseModalHide,
   fetchCourseStudents,
-  removeStudentFromCourse
+  removeStudentFromCourse,
+  setInitialState
 }

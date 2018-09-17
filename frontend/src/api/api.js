@@ -40,6 +40,24 @@ export default class Api {
     })
   }
 
+
+
+  searchStudent(search_query) {
+    return new Promise((resolve, reject) => {
+      let url = `/api/students?search_query=${search_query}`;
+      const data = this.makeRequest('GET', url);
+      resolve(data)
+    })
+  }
+
+  searchCourse(search_query) {
+    return new Promise((resolve, reject) => {
+      let url = `/api/courses?search_query=${search_query}`;
+      const data = this.makeRequest('GET', url);
+      resolve(data)
+    })
+  }
+
   updateStudent(payload) {
     return new Promise((resolve, reject) => {
       const student_id = payload.student_id;

@@ -1,0 +1,18 @@
+[
+  {
+    "pk": 1,
+    "fields": {
+      "title": "course One",
+      "description": "Description of course One!"
+    },
+    "model": "api.course"
+  },
+  {
+    "pk": 2,
+    "fields": {
+      "title": "course Two",
+      "description": "Description of course Two!"
+    },
+    "model": "api.course"
+  }
+]

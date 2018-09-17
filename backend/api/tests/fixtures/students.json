@@ -1,0 +1,50 @@
+[
+  {
+    "pk": 1,
+    "fields": {
+      "first_name": "Ivan",
+      "last_name": "Ivanov",
+      "email": "ivan@iva.nov",
+      "phone_number": "555-0167",
+      "id_number": "AN458092",
+      "is_deleted": false
+    },
+    "model": "api.student"
+  },
+  {
+    "pk": 2,
+    "fields": {
+      "first_name": "Anna",
+      "last_name": "Annova",
+      "email": "anna@ann.ova",
+      "phone_number": "555-0168",
+      "id_number": "DF756002",
+      "is_deleted": true
+    },
+    "model": "api.student"
+  },
+  {
+    "pk": 3,
+    "fields": {
+      "first_name": "Fedor",
+      "last_name": "Fedorov",
+      "email": "fedor@fedor.ov",
+      "phone_number": "555-0169",
+      "id_number": "OR456789",
+      "is_deleted": false
+    },
+    "model": "api.student"
+  },
+  {
+    "pk": 4,
+    "fields": {
+      "first_name": "Olga",
+      "last_name": "Olgova",
+      "email": "olga@olg.ova",
+      "phone_number": "555-0170",
+      "id_number": "RE89876",
+      "is_deleted": false
+    },
+    "model": "api.student"
+  }
+]

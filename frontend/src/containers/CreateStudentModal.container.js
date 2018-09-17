@@ -16,6 +16,7 @@ class CreateStudentModal extends React.Component {
       changePhoneNumber: PropTypes.func.isRequired,
       changeIdNumber: PropTypes.func.isRequired,
       createStudent: PropTypes.func.isRequired,
+      setInitialState: PropTypes.func.isRequired,
     })
   };
 
@@ -24,14 +25,62 @@ class CreateStudentModal extends React.Component {
     this.props.actions.createStudentModalHide();
   };
 
+  componentWillUnmount() {
+    this.props.actions.setInitialState();
+  }
+
+
   renderBody = () => {
     return (
-      <div>
-        <input type="text" onChange={this.firstNameChangeClick} value={this.props.firstName} placeholder="First Name"/>
-        <input type="text" onChange={this.lastNameChangeClick} value={this.props.lastName} placeholder="Last Name"/>
-        <input type="email" onChange={this.emailChangeClick} value={this.props.email} placeholder="Email"/>
-        <input type="text" onChange={this.phoneNumberChangeClick} value={this.props.phoneNumber} placeholder="phone Number"/>
-        <input type="text" onChange={this.idNumberChangeClick} value={this.props.idNumber} placeholder="Id Number"/>
+      <div className="row">
+        <div className="col-md-12 order-md-1">
+
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label htmlFor="firstName">First name</label>
+                <input type="text" className="form-control" id="firstName" onChange={this.firstNameChangeClick}
+                       value={this.props.firstName} placeholder="First Name"/>
+                <div className="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div className="col-md-6 mb-3">
+                <label htmlFor="lastName">Last name</label>
+                <input type="text" className="form-control" id="lastName" onChange={this.lastNameChangeClick}
+                       value={this.props.lastName} placeholder="Last Name"/>
+                <div className="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email">Email</label>
+              <input type="email" className="form-control" id="email" placeholder="you@example.com"
+                     onChange={this.emailChangeClick} value={this.props.email}/>
+              <div className="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="address">Phone number</label>
+              <input type="text" className="form-control" id="phone" onChange={this.phoneNumberChangeClick}
+                     value={this.props.phoneNumber}
+                     placeholder="phone Number"/>
+              <div className="invalid-feedback">
+                Please enter your phone Number.
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="address">Id number</label>
+              <input type="text" className="form-control" id="phone" onChange={this.idNumberChangeClick}
+                     value={this.props.idNumber} placeholder="Id Number"/>
+              <div className="invalid-feedback">
+                Please enter your Id Number.
+              </div>
+            </div>
+        </div>
       </div>
     )
   };
@@ -71,14 +120,14 @@ class CreateStudentModal extends React.Component {
       >
         <Modal.Header>
           <Modal.Title id='ModalHeader'><span>
-            Create Student</span></Modal.Title>
+            <h4 className="mb-3">Student Registration</h4></span></Modal.Title>
         </Modal.Header>
         <Modal.Body className={"modal-body"}>
           {this.renderBody()}
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-default" onClick={actions.createCourseModalHide}> Cancel</button>
-          <button className="btn btn-success" onClick={this.saveStudent}> Start course</button>
+          <button className="btn btn-default btn-lg" onClick={actions.createCourseModalHide}> Cancel</button>
+          <button className="btn btn-primary btn-lg" onClick={this.saveStudent}>Save</button>
         </Modal.Footer>
       </Modal>
     );
