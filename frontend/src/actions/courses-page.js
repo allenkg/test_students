@@ -70,13 +70,13 @@ function createCourse() {
   }
 }
 
-function fetchCourses() {
+function fetchCourses(offset, pageNumber) {
   return async (dispatch, getState, api) => {
     dispatch({type: FETCH_COURSES});
     try {
-      const response = await api.getCourses();
-      const data = JSON.parse(response);
-      dispatch({type: FETCH_COURSES_SUCCESS, data});
+      const response = await api.getCourses(offset, pageNumber);
+      let data = JSON.parse(response);
+      dispatch({type: FETCH_COURSES_SUCCESS, data, pageNumber });
     } catch (e) {
       dispatch({type: FETCH_COURSES_FAILURE, e})
     }

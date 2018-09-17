@@ -54,3 +54,6 @@ td:focus {
 .pointer {
     cursor: pointer;
 }
+.pagination>li {
+    margin-left: 5px;
+}

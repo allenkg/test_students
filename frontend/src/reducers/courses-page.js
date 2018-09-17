@@ -19,13 +19,17 @@ const INITIAL_STATE = {
   title: '',
   description: '',
   img: null,
-  createCourseModalVisible: false
+  createCourseModalVisible: false,
+  totalPages: 0,
+  currentPage: 1,
 };
 
 export default createReducer({
   [FETCH_COURSES]: (state) => merge(state, {isLoading: true}),
   [FETCH_COURSES_SUCCESS]: (state, action) => merge(state, {
-    courses: action.data,
+    courses: action.data.data,
+    totalPages: action.data.allPages,
+    currentPage: parseInt(action.pageNumber) - 1,
     isLoading: false
   }),
   [FETCH_COURSES_FAILURE]: (state, action) => merge(state, {

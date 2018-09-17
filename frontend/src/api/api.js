@@ -16,14 +16,6 @@ export default class Api {
     })
   }
 
-  getCourse(course_id) {
-    return new Promise((resolve, reject) => {
-      let url = `/api/course/${course_id}`;
-      const data = this.makeRequest('GET', url);
-      resolve(data)
-    })
-  }
-
   getCourseStudents(course_id) {
     return new Promise((resolve, reject) => {
       let url = `/api/courses?course_id=${course_id}`;
@@ -40,11 +32,17 @@ export default class Api {
     })
   }
 
-
-
   searchStudent(search_query) {
     return new Promise((resolve, reject) => {
       let url = `/api/students?search_query=${search_query}`;
+      const data = this.makeRequest('GET', url);
+      resolve(data)
+    })
+  }
+
+  getCourse(course_id) {
+    return new Promise((resolve, reject) => {
+      let url = `/api/course/${course_id}`;
       const data = this.makeRequest('GET', url);
       resolve(data)
     })
@@ -82,9 +80,9 @@ export default class Api {
     })
   }
 
-  getCourses() {
+  getCourses(offset, page_number) {
     return new Promise((resolve, reject) => {
-      let url = `/api/courses`;
+      let url = `/api/courses?offset=${offset}&page_number=${page_number}`;
       const data = this.makeRequest('GET', url);
       resolve(data)
     })

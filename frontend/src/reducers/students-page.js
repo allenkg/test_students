@@ -73,7 +73,7 @@ export default createReducer({
   }),
   [FETCH_COURSE_STUDENTS_SUCCESS]: (state, action) => merge(state, {
     isLoading: false,
-    students: action.data
+    students: action.data.data
   }),
   [SET_INITIAL_STATE]: (state) => merge(state, INITIAL_STATE)
 }, INITIAL_STATE)

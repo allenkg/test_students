@@ -86,11 +86,38 @@ class CourseRepo(object):
     def save_course(self, sourse):
         sourse.save()
 
-    def get_all_courses(self):
-        return Course.objects.filter(is_deleted=False)
+    def get_all_courses(self, offset, page_number):
+        courses = Course.objects.filter(is_deleted=False)
+        response = {}
+        if offset[0] != 'undefined':
+            page_number = int(page_number[0])
+            offset = int(offset[0])
+            page_offset = 0
+            if page_number == 1:
+                response = {
+                    'courses': courses[:offset],
+                    'allPages': len(courses)
+                }
+            else:
+                page_offset = offset * page_number
+                response = {
+                    'courses': courses[offset:page_offset],
+                    'allPages': len(courses)
+                }
+        else:
+            response = {
+                'courses': courses,
+                'allPages': len(courses)
+            }
+        return response
 
     def get_all_course_students(self, course_id):
-        return Student.objects.filter(courses_id=course_id[0], is_deleted=False)
+        students = Student.objects.filter(courses_id=course_id[0], is_deleted=False)
+        response = {
+            'courses': students,
+            'allPages': len(students)
+        }
+        return response
 
     def delete_course(self, id):
         try:
@@ -109,4 +136,9 @@ class CourseRepo(object):
         course.save()
 
     def search_course(self, search_query):
-        return Course.objects.filter(title__icontains=search_query[0])
+        course = Course.objects.filter(title__icontains=search_query[0])
+        response = {
+            'courses': course,
+            'allPages': len(course)
+        }
+        return response

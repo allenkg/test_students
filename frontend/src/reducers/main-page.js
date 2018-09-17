@@ -24,7 +24,7 @@ export default createReducer({
     hasSearchResult: true
   }),
   [FETCH_DATA_COURSE_SUCCESS]: (state, action) => merge(state, {
-    courses: action.data,
+    courses: action.data.data,
     isLoading: false,
     hasSearchResult: true
   }),

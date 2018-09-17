@@ -134,16 +134,19 @@ class GetAllCoursesView(object):
         self.get_all_courses_interactor = get_all_courses_interactor
 
     def get(self, **kwargs):
-        body = []
+        body = {}
+        data = []
         try:
-            courses = self.get_all_courses_interactor.set_params(**kwargs).execute()
-            if courses:
-                for course in courses:
+            response = self.get_all_courses_interactor.set_params(**kwargs).execute()
+            if response['courses']:
+                body['allPages'] = response['allPages']
+                for course in response['courses']:
                     try:
                         if course.title:
-                            body.append(CourseSerializer.serialize(course))
+                            data.append(CourseSerializer.serialize(course))
                     except:
-                        body.append(StudentSerializer.serialize(course))
+                        data.append(StudentSerializer.serialize(course))
+            body['data'] = data
             status = HTTP_STATUS_OK_CODE
         except InvalidEntityException as e:
             body = InvalidEntityExceptionSerializer.serialize(e)

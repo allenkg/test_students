@@ -181,13 +181,15 @@ class GetAllCoursesInteractor(object):
 
     def execute(self):
         if not self.course_id and not self.search_query:
-            return self.course_repo.get_all_courses()
+            return self.course_repo.get_all_courses(self.offset, self.page_number)
         elif self.search_query:
             return self.course_repo.search_course(self.search_query)
         else:
             return self.course_repo.get_all_course_students(self.course_id)
 
-    def set_params(self, course_id=None, search_query=None):
+    def set_params(self, course_id=None, search_query=None, offset=None, page_number=None):
         self.course_id = course_id
         self.search_query = search_query
+        self.offset = offset
+        self.page_number = page_number
         return self
