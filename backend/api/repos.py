@@ -132,12 +132,12 @@ class CourseRepo(object):
 
         return course
 
-    def update_course(self, id, title, description, img, student):
+    def update_course(self, id, title, description):
         course = self.get_course_by_id(id)
         course.title = title
         course.description = description
-        course.img = img
         course.save()
+        return course
 
     def search_course(self, search_query):
         course = Course.objects.filter(title__icontains=search_query[0])

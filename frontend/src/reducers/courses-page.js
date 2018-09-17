@@ -63,7 +63,9 @@ export default createReducer({
   }),
   [FETCH_COURSE_DETAILS_SUCCESS]: (state, action) => merge(state, {
     isLoading: false,
-    course: action.data
+    course: action.data,
+    title: action.data.title,
+    description: action.data.description,
   }),
   [FETCH_COURSE_DETAILS_FAILURE]: (state, action) => merge(state, {
     isLoading: false,

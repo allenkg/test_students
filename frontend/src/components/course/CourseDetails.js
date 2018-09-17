@@ -8,13 +8,25 @@ import {browserHistory} from 'react-router';
 
 
 class CourseDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editable: false
+    }
+  }
+
   static propTypes = {
     courseId: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     students: PropTypes.array.isRequired,
     course: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
     actions: PropTypes.shape({
       getCourseDetails: PropTypes.func.isRequired,
+      editCourse: PropTypes.func.isRequired,
+      changeTitle: PropTypes.func.isRequired,
+      changeDescription: PropTypes.func.isRequired,
       removeStudentFromCourse: PropTypes.func.isRequired
     })
   };
@@ -85,8 +97,22 @@ class CourseDetails extends React.Component {
     },
   ];
 
+  editClickHandler = () => {
+    this.setState({editable: true})
+  };
+
+  changeTitleHandler = (e) => {
+    this.props.actions.changeTitle(e.target.value)
+  };
+
+  changeDescriptionHandler = (e) => {
+    this.props.actions.changeDescription(e.target.value)
+  };
+
+  save = () => this.props.actions.editCourse(this.props.courseId);
+
   render() {
-    const {course, isLoading, students, courseId} = this.props;
+    const {course, isLoading, students, courseId, title, description} = this.props;
 
     if (!course && isLoading) {
       return (<div>Loading...</div>)
@@ -95,15 +121,25 @@ class CourseDetails extends React.Component {
     return (
       <div>
         <div className="col-md-12 col-xs-12 text-center mb-3">
-          <h3>{course.title}</h3>
+          {!this.state.editable ?
+            <h3>{title}</h3> :
+            <input type="text" value={title} onChange={this.changeTitleHandler}/>
+          }
         </div>
+
         <div className="row mt-4">
-          <div className="col-md-10">
-          <p>{course.description}</p>
+          {!this.state.editable ? <div className="col-md-10">
+              <p>{description}</p>
+            </div> :
+            <input type="text" onChange={this.changeDescriptionHandler} value={description}/>
+          }
+          <div className="col-md-2 text-right">
+            {!this.state.editable ?
+              <button className="btn btn-primary btn-block" onClick={this.editClickHandler}>Edit</button> :
+              <button className="btn btn-primary btn-block" onClick={this.save}>Save</button>
+            }
+          </div>
         </div>
-        <div className="col-md-2 text-right">
-          <button className="btn btn-primary btn-block">Edit</button>
-        </div></div>
 
         <div className="mt-lg-4 mb">
           <h5>{course.title} students </h5>

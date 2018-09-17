@@ -65,7 +65,6 @@ class CourseInteractor(object):
         self.course_id = course_id
         self.title = str(title)
         self.description = str(description)
-        self.img = img
         return self
 
     def delete_course(self):
@@ -78,8 +77,8 @@ class CourseInteractor(object):
         self.validate()
         return self.course_repo.update_course(
             self.course_id,
-            self.title[0],
-            self.description[0]
+            self.title,
+            self.description
         )
 
     def validate(self):

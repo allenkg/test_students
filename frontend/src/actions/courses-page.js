@@ -29,6 +29,10 @@ export const REMOVE_STUDENT_FROM_COURSE_FAILURE = 'COURSE_PAGE/REMOVE_STUDENT_FR
 
 export const SET_INITIAL_STATE = 'COURSE_PAGE/SET_INITIAL_STATE';
 
+export const EDIT_COURSE = 'COURSE_PAGE/EDIT_COURSE';
+export const EDIT_COURSE_SUCCESS = 'COURSE_PAGE/EDIT_COURSE_SUCCESS';
+export const EDIT_COURSE_FAILURE = 'COURSE_PAGE/EDIT_COURSE_FAILURE';
+
 function createCourseModalShow() {
   return {type: MODAL_SHOW}
 }
@@ -131,6 +135,26 @@ function removeStudentFromCourse(courseId, studentId) {
   }
 }
 
+function editCourse(courseId) {
+  return async (dispatch, getState, api) => {
+    dispatch({type: EDIT_COURSE});
+    try {
+      const { title, description } = getState().coursesPage;
+      const payload = {
+        title: title,
+        description: description,
+        course_id: courseId
+      };
+      const response = await api.updateCourse(payload);
+      const data = JSON.parse(response);
+      dispatch({type: EDIT_COURSE_SUCCESS, data })
+
+    } catch (e) {
+      dispatch({type: EDIT_COURSE_FAILURE, e})
+    }
+  }
+}
+
 function setInitialState() {
   return { type: SET_INITIAL_STATE }
 }
@@ -148,5 +172,6 @@ export default {
   createCourseModalHide,
   fetchCourseStudents,
   removeStudentFromCourse,
-  setInitialState
+  setInitialState,
+  editCourse
 }
