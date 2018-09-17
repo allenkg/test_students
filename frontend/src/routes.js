@@ -2,10 +2,10 @@ import React from 'react';
 import App from "./containers/App";
 import Layout from "./containers/Layout";
 import MainPage from "./containers/MainPage.container";
-import CoursesPage from "./containers/CoursesPage.container";
-import CourseDetails from "./containers/CourseDetails.container";
-import StudentsPage from "./containers/StudentsPage.container";
-import StudentDetails from "./containers/StudentDetails.container";
+import CoursesPage from "./containers/course/CoursesPage.container";
+import CourseDetails from "./containers/course/CourseDetails.container";
+import StudentsPage from "./containers/student/StudentsPage.container";
+import StudentDetails from "./containers/student/StudentDetails.container";
 import { IndexRoute, Route } from "react-router";
 
 

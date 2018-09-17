@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {STYLEFORLINK} from "../constants";
+import {STYLEFORLINK} from "../../constants";
 import {UIDropdownMenu, UIDropdownMenuItem} from "./UIDropdownMenu";
 import ReactTooltip from 'react-tooltip';
 import CourseUsersTable from "./CourseUsersTable";
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 
 
 class CourseDetails extends React.Component {
@@ -31,7 +31,7 @@ class CourseDetails extends React.Component {
   };
 
   editStudent = (id) => {
-     browserHistory.push(`/students/${id}`);
+    browserHistory.push(`/students/${id}`);
   };
   removeStudent = (studentId) => {
     this.props.actions.removeStudentFromCourse(this.props.courseId, studentId);
@@ -94,8 +94,17 @@ class CourseDetails extends React.Component {
 
     return (
       <div>
-        <h4>{course.title}</h4>
-        <p>{course.description}</p>
+        <div className="col-md-12 col-xs-12 text-center mb-3">
+          <h3>{course.title}</h3>
+        </div>
+        <div className="row mt-4">
+          <div className="col-md-10">
+          <p>{course.description}</p>
+        </div>
+        <div className="col-md-2 text-right">
+          <button className="btn btn-primary btn-block">Edit</button>
+        </div></div>
+
         <div className="mt-lg-4 mb">
           <h5>{course.title} students </h5>
           <CourseUsersTable

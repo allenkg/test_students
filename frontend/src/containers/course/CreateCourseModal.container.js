@@ -2,7 +2,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import React from 'react';
 import PropTypes from 'prop-types';
-import CoursesPageActions from "../actions/courses-page";
+import CoursesPageActions from "../../actions/courses-page";
 import Modal from 'react-bootstrap-modal';
 
 class CreateCourseModal extends React.Component {

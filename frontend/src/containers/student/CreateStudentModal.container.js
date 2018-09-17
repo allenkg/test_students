@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap-modal';
-import StudentsPageActions from "../actions/students-page";
+import StudentsPageActions from "../../actions/students-page";
 
 class CreateStudentModal extends React.Component {
   static propTypes = {

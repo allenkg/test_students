@@ -1,8 +1,8 @@
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import StudentsPageActions from '../actions/students-page';
-import CoursesPageActions from '../actions/courses-page';
-import StudentDetails from '../components/StudentDetails';
+import StudentsPageActions from '../../actions/students-page';
+import CoursesPageActions from '../../actions/courses-page';
+import StudentDetails from '../../components/student/StudentDetails';
 
 
 function mapStateToProps(state, ownProps) {

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from "react-router";
-import StudentItem from "./StudentItem";
-import CoursesItem from "./CoursesItem";
+import StudentItem from "./student/StudentItem";
+import CoursesItem from "./course/CoursesItem";
 
 class MainPage extends React.Component {
   static PropTypes = {

@@ -6,8 +6,8 @@ import {Link} from 'react-router';
 import React from 'react';
 import CoursesPageActions from "../actions/courses-page";
 import StudentsPageActions from "../actions/students-page";
-import CreateCourseModal from "./CreateCourseModal.container";
-import CreateStudentModal from "./CreateStudentModal.container";
+import CreateCourseModal from "./course/CreateCourseModal.container";
+import CreateStudentModal from "./student/CreateStudentModal.container";
 
 class Layout extends React.Component {
   constructor(props) {

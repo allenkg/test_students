@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StudentDetailsCoursesBlock from "./StudentDetailsCoursesBlock";
 import StudentDetailsImageBlock from "./StudentDetailsImageBlock";
-import ModalCourse from "../containers/ModalCourse.container";
+import ModalCourse from "../../containers/course/ModalCourse.container";
 
 
 class StudentDetails extends React.Component {

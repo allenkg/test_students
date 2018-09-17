@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import studentAvatar from "../styles/images/studentAvatar.jpeg";
+import studentAvatar from "../../styles/images/studentAvatar.jpeg";
 
 class StudentDetailsImageBlock extends React.Component {
   static propTypes = {
